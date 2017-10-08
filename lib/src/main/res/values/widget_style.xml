@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RedTextView">
+        <attr name="inner_circle_color" format="color"/>
+        <attr name="outer_oval_color" format="color"/>
+        <attr name="inner_circle_radius" format="dimension"/>
+        <attr name="outer_oval_width" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="ViewPagerDotIndicator">
+        <attr name="radius" format="integer" />
+        <attr name="dotSpacing" format="integer" />
+        <attr name="circleColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="VerticalSwitchTextView">
+        <attr name="switchDuaration" format="integer"/>
+        <attr name="idleDuaration" format="integer"/>
+        <attr name="alignment">
+            <enum name="center" value="0"/>
+            <enum name="left" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+        <attr name="switchOrientation">
+            <enum name="up"  value="0"/>
+            <enum name="down"  value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>
