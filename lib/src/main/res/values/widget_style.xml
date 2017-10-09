@@ -24,4 +24,78 @@
             <enum name="down"  value="1"/>
         </attr>
     </declare-styleable>
+    <!--此自定义属性为自定义控件NameValueText使用 -->
+    <declare-styleable name="CustomNameValueText">
+        <attr name="nameText" format="string"/>
+        <attr name="valueText" format="string"/>
+        <attr name="nameTextSize" format="integer"/>
+        <attr name="valueTextSize" format="integer"/>
+        <attr name="nameTextColor" format="color"/>
+        <attr name="valueTextColor" format="color"/>
+        <attr name="nameLinePosition">
+            <enum name="under" value="8" />
+            <enum name="middle" value="16" />
+            <enum name="bold" value="32"/>
+        </attr>
+        <attr name="valueLinePosition">
+            <enum name="under" value="8" />
+            <enum name="middle" value="16" />
+            <enum name="bold" value="32"/>
+        </attr>
+        <attr name="defaultTextSize" format="integer"/>
+        <attr name="defaultTextColor" format="color"/>
+        <attr name="valueDrawableRight" format="reference"/>
+        <attr name="valueDrawableRightPadding" format="dimension"/>
+    </declare-styleable>
+
+    <!--此自定义属性为自定义控件IconTextView使用 -->
+    <declare-styleable name="ControlIconTextView">
+        <attr name="myText" format="string" />
+        <attr name="myTextSize" format="integer"/>
+        <attr name="myTextColor" format="color"/>
+        <attr name="myTextColorSelector" format="reference"/>
+        <attr name="myIcon" format="reference"/>
+        <attr name="myIconSize" format="dimension"/>
+        <attr name="myIconPosition">
+            <enum name="up" value="0" />
+            <enum name="down" value="1" />
+            <enum name="left" value="2"/>
+            <enum name="right" value="3"/>
+        </attr>
+        <attr name="textIconMargin" format="dimension"/>
+        <attr name="myTextClicked" format="color"/>
+        <attr name="myIconClicked" format="reference"/>
+    </declare-styleable>
+
+    <!--此自定义属性为自定义控件NameValueEdit使用 -->
+    <declare-styleable name="ControlNameValueEdit">
+        <attr name="name" format="string" />
+        <attr name="nameSize" format="integer"/>
+        <attr name="nameColor" format="color"/>
+        <attr name="value" format="string" />
+        <attr name="valueHint" format="string"/>
+        <attr name="valueSize" format="integer"/>
+        <attr name="valueColor" format="color"/>
+        <attr name="hintColor" format="color"/>
+        <attr name="rightIcon" format="reference"/>
+        <attr name="nameValueMargin" format="dimension"/>
+        <attr name="valueEditAble" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="CustomPatternLockView">
+        <attr name="lock_size" format="integer" />
+        <attr name="lock_nodeSize" format="dimension" />
+        <attr name="lock_nodeOnAnim" format="reference" />
+        <attr name="lock_padding" format="dimension" />
+        <attr name="lock_spacing" format="dimension" />
+        <attr name="lock_enableVibrate" format="boolean" />
+        <attr name="lock_vibrateTime" format="integer" />
+        <attr name="lock_nodeSrc" format="color|reference" />
+        <attr name="lock_nodeHighlightSrc" format="color|reference" />
+        <attr name="lock_nodeCorrectSrc" format="color|reference" />
+        <attr name="lock_nodeErrorSrc" format="color|reference" />
+        <attr name="lock_lineColor" format="color" />
+        <attr name="lock_lineWidth" format="dimension" />
+        <attr name="lock_nodeTouchExpand" format="dimension" />
+        <attr name="lock_autoLink" format="boolean" />
+    </declare-styleable>
 </resources>

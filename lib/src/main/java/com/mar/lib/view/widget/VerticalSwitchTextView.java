@@ -9,19 +9,15 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.animation.LinearInterpolator;
 
 import com.mar.lib.R;
 
 import java.util.List;
 
-/**
- * 可以在垂直方向滚动切换的Textview ---自定义view
- * switchDuaration -----切换时间；
- * idleDuaration -----停留时间；
- * alignment -----text的对齐方式；
- * switchOrientation -----垂直切换的方向，可以向上或者向下；
- */
-public class VerticalSwitchTextView extends AppCompatTextView {
+public class VerticalSwitchTextView extends AppCompatTextView implements
+        ValueAnimator.AnimatorUpdateListener,Animator.AnimatorListener{
     private static final int DEFAULT_SWITCH_DURATION = 200;
     private static final int DEFAULT_IDLE_DURATION = 3000;
     public static final int TEXT_ALIGN_CENTER = 0;
@@ -81,47 +77,12 @@ public class VerticalSwitchTextView extends AppCompatTextView {
         mPaint = getPaint();
         mPaint.setColor(getCurrentTextColor());
 
-        animator = ValueAnimator.ofFloat(0f, 1f).setDuration(switchDuaration);
-        animator.setStartDelay(idleDuaration);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                currentAnimatedValue = (float) animation.getAnimatedValue();
-                if (currentAnimatedValue < 1.0f) {
-                    invalidate();
-                }
-            }
-        });
-        animator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                if(contentSize==0)
-                    return;
-                currentIndex = (++currentIndex) % contentSize;
-                outStr = lists.get(currentIndex);
-                inStr = lists.get((currentIndex + 1) % contentSize);
-                if(!sameDirection){
-//                    if(switchOrientation==0)
-//                        switchOrientation = 1;
-//                    else if(switchOrientation == 1)
-//                        switchOrientation = 0;
-                    switchOrientation = (switchOrientation + 1) % 2 ;
-                }
-                animator.setStartDelay(idleDuaration);
-                animator.start();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {}
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {}
-        });
+        animator = ValueAnimator.ofInt(0,switchDuaration+idleDuaration).setDuration(switchDuaration+idleDuaration);
+        animator.setInterpolator(new LinearInterpolator());
+        animator.setRepeatCount(ValueAnimator.INFINITE);
+        animator.setRepeatMode(ValueAnimator.RESTART);
+        animator.addUpdateListener(this);
+        animator.addListener(this);
     }
 
     /**
@@ -153,6 +114,16 @@ public class VerticalSwitchTextView extends AppCompatTextView {
      */
     public void setSwitchSameDirection(boolean sameDirection){
         this.sameDirection = sameDirection;
+    }
+
+    public void startSwitch(){
+        if(animator==null){
+            init();
+        }
+        if(!animator.isRunning()) {
+            animator.cancel();
+            animator.start();
+        }
     }
 
     /**
@@ -233,17 +204,78 @@ public class VerticalSwitchTextView extends AppCompatTextView {
         }
     }
 
-//    @Override
-//    protected void onWindowVisibilityChanged(int visibility) {
-//        super.onWindowVisibilityChanged(visibility);
-//        if (visibility == VISIBLE) {
-//            if(animator!=null) {
-//                animator.cancel();
-//                animator.start();
-//            }
-//        } else {
-//            if(animator!=null)
-//                animator.cancel();
-//        }
-//    }
+    @Override
+    public void onAnimationUpdate(ValueAnimator animation) {
+        int currentValue = (int) animation.getAnimatedValue();
+        if (currentValue <= switchDuaration) {
+//            Log.i("malibo","currentValue:"+currentValue);
+            currentAnimatedValue = ((float)currentValue)/((float)switchDuaration);
+            invalidate();
+        }else{
+            if(currentAnimatedValue!=1.0f) {
+                currentAnimatedValue = 1.0f;
+                invalidate();
+            }
+        }
+    }
+    @Override
+    public void onAnimationStart(Animator animation) {}
+
+    @Override
+    public void onAnimationEnd(Animator animation) {}
+
+    @Override
+    public void onAnimationCancel(Animator animation) {}
+
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+        if(contentSize==0)
+            return;
+        currentIndex = (++currentIndex) % contentSize;
+        outStr = lists.get(currentIndex);
+        inStr = lists.get((currentIndex + 1) % contentSize);
+        if(!sameDirection){
+//                    if(switchOrientation==0)
+//                        switchOrientation = 1;
+//                    else if(switchOrientation == 1)
+//                        switchOrientation = 0;
+            switchOrientation = (switchOrientation + 1) % contentSize ;
+        }
+    }
+
+    @Override
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        if(animator==null){
+            init();
+        }
+
+        if (visibility == VISIBLE) {
+            if(animator!=null) {
+                animator.cancel();
+                animator.start();
+            }
+        }else {
+            if(animator!=null) {
+                animator.cancel();
+            }
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if(lists!=null && lists.size()>0 && animator!=null){
+            animator.cancel();
+            animator.start();
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        if(animator!=null) {
+            animator.cancel();
+        }
+        super.onDetachedFromWindow();
+    }
 }

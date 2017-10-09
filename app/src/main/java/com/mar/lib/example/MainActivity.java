@@ -1,8 +1,12 @@
-package com.mar.lib;
+package com.mar.lib.example;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.mar.lib.view.widget.VerticalSwitchTextView;
+import com.mar.lib.example.R;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());
+//        tv.setText(stringFromJNI());
+        VerticalSwitchTextView competCapabilityTex = (VerticalSwitchTextView)findViewById(R.id.award);
+        ArrayList<String> content = new ArrayList<>(2);
+        content.add("荣耀榜主");
+        content.add("排名NO1");
+        competCapabilityTex.setTextContent(content);
+        competCapabilityTex.setSwitchSameDirection(false);
+        competCapabilityTex.startSwitch();
     }
 
     /**
