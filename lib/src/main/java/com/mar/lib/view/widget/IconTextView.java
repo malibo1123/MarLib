@@ -14,27 +14,25 @@ import android.widget.TextView;
 
 import com.mar.lib.R;
 
-/**
- * 此控件宽度为占满MATCH-PARENT，高度为包含WRAP-CONTENT，
- * 名称和值之间的最小间隔为10dp。名称居于最左边，值居于最右边;<br>
- * 此控件支持的自定义属性如下：<br>
- * control:nameText----------设置名称（如上述的金额）<br>
- * control:valueText---------设置值（如上述的5元）<br>
- * control:nameTextSize------设置名称文字大小<br>
- * control:valueTextSize-----设置值的文字大小<br>
- * control:nameTextColor-----设置名称文字颜色<br>
- * control:myTextColorSelector---可以设置文字颜色的选择器<br>
- * control:valueTextColor----设置值的文字颜色<br>
- * control:defaultTextSize---设置默认文字大小<br>
- * control:defaultTextColor--设置默认的文字颜色<br>
- * control:nameLinePosition--设置名称文字风格，支持
- *       粗体（bold）、下划线（under）、删除线（middle）<br>
- * control:valueLinePosition-设置值的文字风格，支持
- *       粗体（bold）、下划线（under）、删除线（middle）<br>
+/** 主要用于图片配文字的场景<br>
+ * textValue--------------------要显示的文本<br>
+   textSize----------------要显示文本的大小<br>
+   textColor---------------要显示的文本颜色<br>
+   myTextColorSelector-------要显示的文本的ColorStateList，其优先级高于myTextColor<br>
+   myIcon--------------------要显示的图片资源id<br>
+   iconSize----------------图片大小<br>
+   iconPosition------------图片位置（可以置于文字的上下左右）<br>
+   textIconMargin------------文本合图片之间的间距<br>
+   textClicked-------------点击或者选中的文字颜色<br>
+   iconClicked-------------点击或者选中时要显示的icon<br>
  * @author marblema
  * @time 2016-04-08
  */
 public class IconTextView extends LinearLayout {
+	private static final int Up = 0;
+	private static final int Down = 1;
+	private static final int Left = 2;
+	private static final int Right = 3;
 	private TextView textView;
 	private ImageView iconView;
 
@@ -53,20 +51,21 @@ public class IconTextView extends LinearLayout {
 		initView(context, attrs, defStyle);
 	}
 
+	@SuppressWarnings("ResourceType")
 	private void initView(Context context, AttributeSet attrs, int defStyle){
 		textView = new TextView(context);
 		iconView = new ImageView(context);
 		textView.setSingleLine();
 		TypedArray a = context.obtainStyledAttributes(attrs,
-				R.styleable.ControlIconTextView);
+				R.styleable.IconTextView);
 		if(a!=null){
 			int iconPosition = a.getInt(
-					R.styleable.ControlIconTextView_myIconPosition,0);
+					R.styleable.IconTextView_iconPosition,0);
 			int iconSize = a.getDimensionPixelSize(
-					R.styleable.ControlIconTextView_myIconSize,
+					R.styleable.IconTextView_iconSize,
 					LayoutParams.WRAP_CONTENT);
 			int textIconMargin = a.getDimensionPixelSize(
-					R.styleable.ControlIconTextView_textIconMargin,0);
+					R.styleable.IconTextView_textIconMargin,0);
 
 			LayoutParams tParams = new LayoutParams(
 					LayoutParams.WRAP_CONTENT,
@@ -74,7 +73,7 @@ public class IconTextView extends LinearLayout {
 			LayoutParams iParams = new LayoutParams(
 					iconSize,iconSize);
 			switch (iconPosition){
-			case 1://图片在文字下面
+			case Down://图片在文字下面
 				setOrientation(VERTICAL);
 				iParams.topMargin = textIconMargin;
 				iParams.gravity = Gravity.CENTER_HORIZONTAL;
@@ -82,7 +81,7 @@ public class IconTextView extends LinearLayout {
 				addView(textView,tParams);
 				addView(iconView,iParams);
 				break;
-			case 2://图片在文字左边
+			case Left://图片在文字左边
 				setOrientation(HORIZONTAL);
 				iParams.rightMargin = textIconMargin;
 				iParams.gravity = Gravity.CENTER_VERTICAL;
@@ -90,7 +89,7 @@ public class IconTextView extends LinearLayout {
 				addView(iconView,iParams);
 				addView(textView,tParams);
 				break;
-			case 3://图片在文字右边
+			case Right://图片在文字右边
 				setOrientation(HORIZONTAL);
 				iParams.leftMargin = textIconMargin;
 				iParams.gravity = Gravity.CENTER_VERTICAL;
@@ -98,6 +97,7 @@ public class IconTextView extends LinearLayout {
 				addView(textView,tParams);
 				addView(iconView,iParams);
 				break;
+			case Up:// no break
 			default://默认图片在文字上面
 				setOrientation(VERTICAL);
 				tParams.topMargin = textIconMargin;
@@ -109,21 +109,21 @@ public class IconTextView extends LinearLayout {
 			}
 
 			iconResId = a.getResourceId(
-					R.styleable.ControlIconTextView_myIcon,0);
+					R.styleable.IconTextView_myIcon,0);
 			if(iconResId>0)
 				iconView.setImageResource(iconResId);
 			String text = a.getString(
-					R.styleable.ControlIconTextView_myText);
+					R.styleable.IconTextView_textValue);
 			if(!TextUtils.isEmpty(text))
 				textView.setText(text);
 			int textSize = a.getInt(
-					R.styleable.ControlIconTextView_myTextSize, -1);
+					R.styleable.IconTextView_textSize, -1);
 			if(textSize>0)
 				textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,textSize);
 			textColor = a.getColor(
-					R.styleable.ControlIconTextView_myTextColor, -1);
+					R.styleable.IconTextView_textColor, -1);
 			myTextColorSelector = a.getResourceId(
-					R.styleable.ControlIconTextView_myTextColorSelector, 0);
+					R.styleable.IconTextView_myTextColorSelector, 0);
 //			if(textColor >0)
 			if(myTextColorSelector != 0) {
 				ColorStateList csl=(ColorStateList)getResources().getColorStateList(myTextColorSelector);
@@ -133,9 +133,9 @@ public class IconTextView extends LinearLayout {
 			}
 
 			iconClickedResId = a.getResourceId(
-					R.styleable.ControlIconTextView_myIconClicked,0);
+					R.styleable.IconTextView_iconClicked,0);
 			textClickedColor = a.getColor(
-					R.styleable.ControlIconTextView_myTextClicked, -1);
+					R.styleable.IconTextView_textClicked, -1);
 //			LogUtil.i("cft","textClickedColor1:"+textClickedColor);
 			a.recycle();
 		}

@@ -49,22 +49,22 @@
     </declare-styleable>
 
     <!--此自定义属性为自定义控件IconTextView使用 -->
-    <declare-styleable name="ControlIconTextView">
-        <attr name="myText" format="string" />
-        <attr name="myTextSize" format="integer"/>
-        <attr name="myTextColor" format="color"/>
+    <declare-styleable name="IconTextView">
+        <attr name="textValue" format="string" />
+        <attr name="textSize" format="integer"/>
+        <attr name="textColor" format="color"/>
         <attr name="myTextColorSelector" format="reference"/>
         <attr name="myIcon" format="reference"/>
-        <attr name="myIconSize" format="dimension"/>
-        <attr name="myIconPosition">
+        <attr name="iconSize" format="dimension"/>
+        <attr name="iconPosition">
             <enum name="up" value="0" />
             <enum name="down" value="1" />
             <enum name="left" value="2"/>
             <enum name="right" value="3"/>
         </attr>
         <attr name="textIconMargin" format="dimension"/>
-        <attr name="myTextClicked" format="color"/>
-        <attr name="myIconClicked" format="reference"/>
+        <attr name="textClicked" format="color"/>
+        <attr name="iconClicked" format="reference"/>
     </declare-styleable>
 
     <!--此自定义属性为自定义控件NameValueEdit使用 -->
