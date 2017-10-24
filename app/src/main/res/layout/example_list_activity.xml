@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     tools:context=".ExampleListActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
     <TextView
         android:id="@+id/ExampleList_ShowVerticalSwitchText"
@@ -34,5 +36,5 @@
         android:layout_marginTop="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:onClick="showVerticalSwitchText"/>
+        android:onClick="showRoundedLetter"/>
 </LinearLayout>

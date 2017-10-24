@@ -14,6 +14,14 @@ import android.view.View;
 import com.mar.lib.R;
 
 /**
+ * 此自定义控件主要用来显示一个有圆形背景的标题。<br>
+ * 主要用于比如显示三条信息：<br>1、……<br>2、……<br>3、……<br>
+ *  然后给上面的1、2、3加上一个圆形背景<br><br>
+ *  在xml中可以自定义的参数如下：<br>
+ *      titleText --------------- 要加圆形背景的文字；<br>
+ *      titleSize --------------- 要加圆形背景的文字的大小；<br>
+ *      titleColor -------------- 要加圆形背景的文字的颜色；<br>
+ *      backgroundColorValue -----要加的圆形背景的颜色；<br>
  * Created by malibo on 2017/10/23.
  */
 public class RoundedLetterView extends View {

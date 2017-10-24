@@ -16,6 +16,15 @@ import com.mar.lib.R;
 
 import java.util.List;
 
+/**
+ * 此自定义控件主要用来显示能够垂直翻转的多个文本<br>
+ * 主要用于翻转显示文本<br><br>在xml中可以自定义的参数如下：<br>
+ *      switchDuaration --------------- 文本切换的时间；<br>
+ *      idleDuaration ----------------- 文本停留的时间；<br>
+ *      alignment -------------------- 文字的对齐方式，可以是左对齐或者居中或者右对齐；<br>
+ *      switchOrientation -------------定义翻转的方向，可以是向上翻转或者向下翻转；<br>
+ * Created by malibo on 2017/10/23.
+ */
 public class VerticalSwitchTextView extends AppCompatTextView implements
         ValueAnimator.AnimatorUpdateListener,Animator.AnimatorListener{
     private static final int DEFAULT_SWITCH_DURATION = 200;

@@ -38,6 +38,10 @@ public class ExampleListActivity extends AppCompatActivity {
         showActivity(VerticalSwitchExample.class);
     }
 
+    public void showRoundedLetter(View view){
+        showActivity(RoundedLetterExample.class);
+    }
+
     private void showActivity(Class<? extends Activity> cls){
         Intent i = new Intent(this,cls);
         startActivity(i);

@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".VerticalSwitchExample"/>
+        <activity android:name=".RoundedLetterExample"/>
     </application>
 
 </manifest>
