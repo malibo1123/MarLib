@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ExampleListActivity"
+    android:orientation="vertical">
+
+    <com.mar.lib.view.widget.VerticalSwitchTextView
+        android:id="@+id/award"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#FFcccccc"
+        android:singleLine="true"
+        app:switchDuaration = "200"
+        app:idleDuaration = "3000"
+        app:alignment="center"
+        tools:text="战力值：123456789"/>
+
+    <com.mar.lib.view.widget.RoundedLetterView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rlv_name_view"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        app:backgroundColorValue="@android:color/holo_green_dark"
+        app:titleColor="@android:color/white"
+        app:titleSize="35dp"
+        app:titleText="A" />
+</LinearLayout>

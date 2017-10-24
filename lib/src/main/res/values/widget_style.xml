@@ -98,4 +98,10 @@
         <attr name="lock_nodeTouchExpand" format="dimension" />
         <attr name="lock_autoLink" format="boolean" />
     </declare-styleable>
+    <declare-styleable name="RoundedLetterView">
+        <attr name="titleText" format="string" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="titleColor" format="color" />
+        <attr name="backgroundColorValue" format="color" />
+    </declare-styleable>
 </resources>
