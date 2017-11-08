@@ -12,7 +12,6 @@
     android:paddingRight="20dp">
 
     <TextView
-        android:id="@+id/ExampleList_ShowVerticalSwitchText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"
@@ -25,7 +24,6 @@
         android:paddingBottom="5dp"
         android:onClick="showVerticalSwitchText"/>
     <TextView
-        android:id="@+id/ExampleList_ShowRoundedLetter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"
@@ -37,4 +35,16 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:onClick="showRoundedLetter"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:text="IconText使用示例"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:onClick="showIconText"/>
 </LinearLayout>

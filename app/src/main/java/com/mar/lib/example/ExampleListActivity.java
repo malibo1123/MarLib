@@ -42,6 +42,10 @@ public class ExampleListActivity extends AppCompatActivity {
         showActivity(RoundedLetterExample.class);
     }
 
+    public void showIconText(View view){
+        showActivity(IconTextExample.class);
+    }
+
     private void showActivity(Class<? extends Activity> cls){
         Intent i = new Intent(this,cls);
         startActivity(i);

@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VerticalSwitchExample"/>
-        <activity android:name=".RoundedLetterExample"/>
+        <activity android:name=".VerticalSwitchExample" />
+        <activity android:name=".RoundedLetterExample" />
+        <activity android:name=".IconTextExample"/>
     </application>
 
 </manifest>

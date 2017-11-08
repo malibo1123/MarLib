@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ExampleListActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <com.mar.lib.view.widget.IconTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:myIcon="@drawable/bg_green_big_yes"
+        custom:iconPosition="iconLeft"
+        custom:iconSize="30dp"
+        custom:textSize="22"
+        custom:textColor="@android:color/holo_green_dark"
+        custom:textIconMargin="10dp"
+        custom:textValue="恭喜你答对了"/>
+    <com.mar.lib.view.widget.IconTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        custom:myIcon="@drawable/cutter_icon_play"
+        custom:iconSize="50dp"
+        custom:textSize="15"
+        custom:textColor="@android:color/darker_gray"
+        custom:textIconMargin="1dp"
+        custom:textValue="开启音\n乐之旅"/>
+    <com.mar.lib.view.widget.IconTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        custom:myIcon="@drawable/ic_screen_pre_cate_arrow"
+        custom:iconPosition="iconRight"
+        custom:iconSize="20dp"
+        custom:textSize="20"
+        custom:textColor="@android:color/holo_orange_dark"
+        custom:textIconMargin="5dp"
+        custom:textValue="去查看"/>
+    <com.mar.lib.view.widget.IconTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        custom:myIcon="@drawable/h5_refresh_pressed"
+        custom:iconSize="50dp"
+        custom:iconPosition="iconDown"
+        custom:textSize="15"
+        custom:textColor="@android:color/darker_gray"
+        custom:textIconMargin="1dp"
+        custom:textValue="点击下面按钮重试"/>
+</LinearLayout>

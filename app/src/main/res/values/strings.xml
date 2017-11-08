@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MarLib</string>
+    <string name="title_activity_icon_text_example">IconTextExample</string>
 </resources>
