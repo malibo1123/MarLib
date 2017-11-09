@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/LibAsync/LibAsync.iml" filepath="$PROJECT_DIR$/LibAsync/LibAsync.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibUtil/LibUtil.iml" filepath="$PROJECT_DIR$/LibUtil/LibUtil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibView/lib.iml" filepath="$PROJECT_DIR$/LibView/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/MarLib.iml" filepath="$PROJECT_DIR$/MarLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RxJava/RxJava.iml" filepath="$PROJECT_DIR$/RxJava/RxJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
     </modules>
   </component>
 </project>
