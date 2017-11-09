@@ -19,6 +19,8 @@
         <activity android:name=".VerticalSwitchExample" />
         <activity android:name=".RoundedLetterExample" />
         <activity android:name=".IconTextExample"/>
+        <activity android:name=".NameValueEditExample"/>
+        <activity android:name=".WidgetExample"/>
     </application>
 
 </manifest>

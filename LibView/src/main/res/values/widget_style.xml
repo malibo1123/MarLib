@@ -67,7 +67,7 @@
     </declare-styleable>
 
     <!--此自定义属性为自定义控件NameValueEdit使用 -->
-    <declare-styleable name="ControlNameValueEdit">
+    <declare-styleable name="NameValueEdit">
         <attr name="name" format="string" />
         <attr name="nameSize" format="integer"/>
         <attr name="nameColor" format="color"/>
@@ -115,5 +115,10 @@
             <enum name="STROKE" value="0" />
             <enum name="FILL" value="1" />
         </attr>
+    </declare-styleable>
+    <declare-styleable name="EmbellishTitle">
+        <attr name="embellishTitleText" format="string" />
+        <attr name="embellishTitleTextColor" format="color" />
+        <attr name="embellishTitleTextSize" format="dimension" />
     </declare-styleable>
 </resources>

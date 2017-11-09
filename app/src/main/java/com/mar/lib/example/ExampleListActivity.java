@@ -5,11 +5,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-
-import com.mar.lib.view.widget.VerticalSwitchTextView;
-import com.mar.lib.example.R;
-import java.util.ArrayList;
 
 public class ExampleListActivity extends AppCompatActivity {
 
@@ -34,6 +29,10 @@ public class ExampleListActivity extends AppCompatActivity {
      */
 //    public native String stringFromJNI();
 
+    public void showWidgetExample(View view){
+        showActivity(WidgetExample.class);
+    }
+
     public void showVerticalSwitchText(View view){
         showActivity(VerticalSwitchExample.class);
     }
@@ -44,6 +43,10 @@ public class ExampleListActivity extends AppCompatActivity {
 
     public void showIconText(View view){
         showActivity(IconTextExample.class);
+    }
+
+    public void showNameValueEdit(View view){
+        showActivity(NameValueEditExample.class);
     }
 
     private void showActivity(Class<? extends Activity> cls){

@@ -2,9 +2,8 @@ package com.mar.lib.example;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
-import com.mar.lib.view.widget.VerticalSwitchTextView;
+import com.mar.lib.widget.VerticalSwitchTextView;
 
 import java.util.ArrayList;
 

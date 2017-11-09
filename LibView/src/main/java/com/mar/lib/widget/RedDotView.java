@@ -1,4 +1,4 @@
-package com.mar.lib.view.widget;
+package com.mar.lib.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;

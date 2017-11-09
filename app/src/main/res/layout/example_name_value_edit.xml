@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ExampleListActivity"
+    android:orientation="vertical">
+
+    <com.mar.lib.widget.NameValueEdit
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        custom:name="姓名"
+        custom:nameColor="#FF000000"
+        custom:nameSize="18"
+        custom:valueHint="请输入您的姓名"
+        custom:valueSize="16"
+        custom:valueColor="#FFaaaaaa"
+        custom:hintColor="#FFcccccc"
+        custom:nameValueMargin="20dp"/>
+    <com.mar.lib.widget.NameValueEdit
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        custom:name="示例"
+        custom:nameColor="#FF000000"
+        custom:nameSize="18"
+        custom:value="不可编辑"
+        custom:valueSize="16"
+        custom:valueColor="#FFaaaaaa"
+        custom:hintColor="#FFcccccc"
+        custom:nameValueMargin="20dp"
+        custom:valueEditAble="false"/>
+    <com.mar.lib.widget.NameValueEdit
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        custom:name="籍贯"
+        custom:nameColor="#FF000000"
+        custom:nameSize="18"
+        custom:value="请选择"
+        custom:valueSize="16"
+        custom:valueColor="#FFaaaaaa"
+        custom:hintColor="#FFcccccc"
+        custom:nameValueMargin="20dp"
+        custom:valueEditAble="false"
+        custom:rightIcon="@drawable/ic_screen_pre_cate_arrow"/>
+</LinearLayout>

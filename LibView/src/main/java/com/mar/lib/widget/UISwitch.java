@@ -1,4 +1,4 @@
-package com.mar.lib.view.widget;
+package com.mar.lib.widget;
 
 /**
  * Created by wm on 2014/8/15.

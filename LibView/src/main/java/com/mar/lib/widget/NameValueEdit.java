@@ -1,4 +1,4 @@
-package com.mar.lib.view.widget;
+package com.mar.lib.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -20,15 +20,15 @@ import com.mar.lib.R;
  * 此控件宽度为占满MATCH-PARENT，高度为包含WRAP-CONTENT，
  * 名称和值之间的间隔由nameValueMargin自定义属性指定。<br>
  * 此控件支持的自定义属性如下：<br>
- * control:name----------设置名称（如上述的金额）<br>
- * control:value---------设置值（如上述的5元）<br>
- * control:nameSize------设置名称文字大小<br>
- * control:valueSize-----设置值的文字大小<br>
- * control:nameColor-----设置名称文字颜色<br>
- * control:valueColor----设置值的文字颜色<br>
- * control:valueHint-----设置值的默认显示（输入提示）<br>
- * control:rightIcon-----设置值右边的icon，如果没有设置则不显示<br>
- * control:nameValueMargin----设置名称和值之间的间距<br>
+ * name----------设置名称（如上述的金额）<br>
+ * value---------设置值（如上述的5元）<br>
+ * nameSize------设置名称文字大小<br>
+ * valueSize-----设置值的文字大小<br>
+ * nameColor-----设置名称文字颜色<br>
+ * valueColor----设置值的文字颜色<br>
+ * valueHint-----设置值的默认显示（输入提示）<br>
+ * rightIcon-----设置值右边的icon，如果没有设置则不显示<br>
+ * nameValueMargin----设置名称和值之间的间距<br>
  * @author marblema
  * @time 2016-04-08
  */
@@ -65,7 +65,7 @@ public class NameValueEdit extends RelativeLayout{
 
 	private void initAttri(Context context, AttributeSet attrs, int defStyle) {
 		TypedArray a = context.obtainStyledAttributes(attrs,
-				R.styleable.ControlNameValueEdit);
+				R.styleable.NameValueEdit);
 		if(a!=null){
 			setNameTextView(a);
 			setValueEditView(a);
@@ -76,43 +76,43 @@ public class NameValueEdit extends RelativeLayout{
 
 	private void setNameTextView(TypedArray a){
 		String nameText = a.getString(R.styleable
-				.ControlNameValueEdit_name);
+				.NameValueEdit_name);
 		if(!TextUtils.isEmpty(nameText))
 			nameTextView.setText(nameText);
 		int nameTextSize = a.getInt(R.styleable
-				.ControlNameValueEdit_nameSize, -1);
+				.NameValueEdit_nameSize, -1);
 		if(nameTextSize!=-1)
 			nameTextView.setTextSize(TypedValue
 					.COMPLEX_UNIT_SP,nameTextSize);
 		int nameTextColor = a.getColor(R.styleable
-				.ControlNameValueEdit_nameColor, -1);
+				.NameValueEdit_nameColor, -1);
 //		if(nameTextColor!=-1)
 			nameTextView.setTextColor(nameTextColor);
 	}
 
 	private void setValueEditView(TypedArray a){
 		String hintText = a.getString(R.styleable
-				.ControlNameValueEdit_valueHint);
+				.NameValueEdit_valueHint);
 		String valueText = a.getString(R.styleable
-				.ControlNameValueEdit_value);
+				.NameValueEdit_value);
 		if(!TextUtils.isEmpty(valueText))
 			valueEditView.setText(valueText);
 		if(!TextUtils.isEmpty(hintText))
 			valueEditView.setHint(hintText);
 		int size = a.getInt(R.styleable
-				.ControlNameValueEdit_valueSize, -1);
+				.NameValueEdit_valueSize, -1);
 		if(size!=-1)
 			valueEditView.setTextSize(TypedValue
 					.COMPLEX_UNIT_SP,size);
 		int color = a.getColor(R.styleable
-				.ControlNameValueEdit_valueColor, -1);
+				.NameValueEdit_valueColor, -1);
 		int hintColor = a.getColor(R.styleable
-				.ControlNameValueEdit_hintColor, -1);
+				.NameValueEdit_hintColor, -1);
 //		if(color!=-1)
 			valueEditView.setTextColor(color);
 		valueEditView.setHintTextColor(hintColor);
 		int nameValueMargin = a.getDimensionPixelSize(
-				R.styleable.ControlNameValueEdit_nameValueMargin,-1);
+				R.styleable.NameValueEdit_nameValueMargin,-1);
 		if(nameValueMargin!=-1)
 			((LayoutParams) valueEditView.getLayoutParams())
 					.setMargins(nameValueMargin,0,0,0);
@@ -120,12 +120,12 @@ public class NameValueEdit extends RelativeLayout{
 
 	private void setRightIcon(TypedArray a){
 		int resId = a.getResourceId(R.styleable
-				.ControlNameValueEdit_rightIcon,0);
+				.NameValueEdit_rightIcon,0);
 		if(resId>0)
 			rightIcon.setImageResource(resId);
 
 		boolean valueEditAble = a.getBoolean(R.styleable
-				.ControlNameValueEdit_valueEditAble,true);
+				.NameValueEdit_valueEditAble,true);
 		valueEditView.setFocusable(valueEditAble);
 		valueEditView.setEnabled(valueEditAble);
 	}

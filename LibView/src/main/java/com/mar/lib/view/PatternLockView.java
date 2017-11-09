@@ -1,4 +1,4 @@
-package com.mar.lib.view.view;
+package com.mar.lib.view;
 
 import java.util.ArrayList;
 import java.util.List;

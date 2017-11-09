@@ -9,7 +9,7 @@
     tools:context=".ExampleListActivity"
     android:orientation="vertical">
 
-    <com.mar.lib.view.widget.RoundedLetterView
+    <com.mar.lib.widget.RoundedLetterView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/rlv_name_view"
         android:layout_width="56dp"
@@ -21,7 +21,7 @@
         app:titleColor="@android:color/white"
         app:titleSize="35dp"
         app:titleText="A" />
-    <com.mar.lib.view.widget.RoundedLetterView
+    <com.mar.lib.widget.RoundedLetterView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -32,7 +32,7 @@
         app:titleColor="@android:color/white"
         app:titleSize="35dp"
         app:titleText="2" />
-    <com.mar.lib.view.widget.RoundedLetterView
+    <com.mar.lib.widget.RoundedLetterView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="56dp"
         android:layout_height="56dp"
