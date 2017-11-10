@@ -173,5 +173,27 @@
             custom:nameValueMargin="20dp"
             custom:valueEditAble="false"
             custom:rightIcon="@drawable/ic_screen_pre_cate_arrow"/>
+
+
+        <com.mar.lib.widget.EmbellishTitle
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            custom:embellishTitleText="ShadowImageView示例"/>
+        <com.mar.lib.widget.ShadowImageView
+            android:id="@+id/shadow"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            custom:shadowRound="0dp"
+            custom:shadowSrc="@drawable/android0" />
+        <com.mar.lib.widget.ShadowImageView
+            android:id="@+id/shadowd"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            custom:shadowRound="5dp"
+            custom:shadowSrc="@drawable/lotus"
+            custom:shadowColor="@color/colorPrimary"/>
     </LinearLayout>
 </ScrollView>

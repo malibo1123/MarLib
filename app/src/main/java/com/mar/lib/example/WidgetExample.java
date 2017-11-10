@@ -2,6 +2,7 @@ package com.mar.lib.example;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.SeekBar;
 
 import com.mar.lib.widget.VerticalSwitchTextView;
 

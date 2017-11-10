@@ -121,4 +121,9 @@
         <attr name="embellishTitleTextColor" format="color" />
         <attr name="embellishTitleTextSize" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="ShadowImageView">
+        <attr name="shadowRound" format="dimension" />
+        <attr name="shadowSrc" format="reference" />
+        <attr name="shadowColor" format="color" />
+    </declare-styleable>
 </resources>
