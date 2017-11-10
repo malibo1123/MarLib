@@ -12,10 +12,12 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:background="@android:color/white"
-        android:layout_marginBottom="30dp">
+        android:paddingBottom="30dp">
         <com.mar.lib.widget.EmbellishTitle
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             custom:embellishTitleText="IconText示例"/>
         <com.mar.lib.widget.IconTextView
             android:layout_width="wrap_content"
@@ -63,6 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             custom:embellishTitleText="RoundedLetter示例"/>
         <com.mar.lib.widget.RoundedLetterView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -102,6 +106,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             custom:embellishTitleText="垂直翻转Text示例"/>
         <com.mar.lib.widget.VerticalSwitchTextView
             android:id="@+id/award"
@@ -119,6 +125,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             custom:embellishTitleText="NameValueEdit示例"/>
         <com.mar.lib.widget.NameValueEdit
             android:layout_width="match_parent"
