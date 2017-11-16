@@ -26,48 +26,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"
-        android:text="垂直翻转Text示例"
+        android:text="Enviews使用示例"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:onClick="showVerticalSwitchText"/>
+        android:onClick="showEnviewsExample"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"
-        android:text="圆形字母标题示例"
+        android:text="开始测试"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:onClick="showRoundedLetter"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:text="IconText使用示例"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:onClick="showIconText"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:text="NameValueEdit使用示例"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:onClick="showNameValueEdit"/>
+        android:paddingBottom="5dp"/>
 </LinearLayout>

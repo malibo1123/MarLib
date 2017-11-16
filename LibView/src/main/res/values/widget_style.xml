@@ -126,4 +126,61 @@
         <attr name="shadowSrc" format="reference" />
         <attr name="shadowColor" format="color" />
     </declare-styleable>
+    <declare-styleable name="CircleView">
+        <attr name="cv_titleText" format="string" />
+        <attr name="cv_subtitleText" format="string" />
+        <attr name="cv_titleSize" format="dimension" />
+        <attr name="cv_subtitleSize" format="dimension" />
+        <attr name="cv_titleSubtitleSpace" format="float" />
+        <attr name="cv_strokeWidthSize" format="float" />
+        <attr name="cv_fillRadius" format="float" />
+        <attr name="cv_titleColor" format="color" />
+        <attr name="cv_subtitleColor" format="color" />
+        <attr name="cv_fillColor" format="color" />
+        <attr name="cv_strokeColorValue" format="color" />
+        <attr name="cv_backgroundColorValue" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="refresh">
+        <attr name="refresh_line_color" format="color" />
+        <attr name="refresh_line_width" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="download">
+        <attr name="download_line_color" format="color" />
+        <attr name="download_bg_line_color" format="color" />
+        <attr name="download_text_color" format="color" />
+        <attr name="download_line_width" format="integer" />
+        <attr name="download_bg_line_width" format="integer" />
+        <attr name="download_text_size" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="play">
+        <attr name="play_line_color" format="color" />
+        <attr name="play_bg_line_color" format="color" />
+        <attr name="play_line_width" format="integer" />
+        <attr name="play_bg_line_width" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="scroll">
+        <attr name="scroll_line_color" format="color" />
+        <attr name="scroll_line_width" format="integer" />
+        <attr name="scroll_bg_line_color" format="color" />
+        <attr name="scroll_bg_line_width" format="integer" />
+        <attr name="scroll_is_selected" format="boolean" />
+        <attr name="scroll_view_translation_x" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="search">
+        <attr name="search_line_color" format="color" />
+        <attr name="search_line_width" format="integer" />
+        <attr name="search_dot_size" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="volume">
+        <attr name="volume_line_color" format="color" />
+        <attr name="volume_line_width" format="integer" />
+        <attr name="volume_bg_line_color" format="color" />
+        <attr name="volume_bg_line_width" format="integer" />
+    </declare-styleable>
 </resources>

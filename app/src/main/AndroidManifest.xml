@@ -12,15 +12,12 @@
         <activity android:name=".ExampleListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VerticalSwitchExample" />
-        <activity android:name=".RoundedLetterExample" />
-        <activity android:name=".IconTextExample"/>
-        <activity android:name=".NameValueEditExample"/>
+
         <activity android:name=".WidgetExample"/>
+        <activity android:name=".EnviesExample" />
     </application>
 
 </manifest>

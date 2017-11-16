@@ -2,8 +2,12 @@ package com.mar.lib.example;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 
+import com.mar.lib.enviews.ENDownloadView;
+import com.mar.lib.enviews.ENLoadingView;
 import com.mar.lib.widget.VerticalSwitchTextView;
 
 import java.util.ArrayList;

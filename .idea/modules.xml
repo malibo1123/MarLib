@@ -4,10 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LibAsync/LibAsync.iml" filepath="$PROJECT_DIR$/LibAsync/LibAsync.iml" />
       <module fileurl="file://$PROJECT_DIR$/LibUtil/LibUtil.iml" filepath="$PROJECT_DIR$/LibUtil/LibUtil.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LibView/lib.iml" filepath="$PROJECT_DIR$/LibView/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibView/LibView.iml" filepath="$PROJECT_DIR$/LibView/LibView.iml" />
       <module fileurl="file://$PROJECT_DIR$/MarLib.iml" filepath="$PROJECT_DIR$/MarLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/RxJava/RxJava.iml" filepath="$PROJECT_DIR$/RxJava/RxJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\myFile\code\android\MarLib\LibView\lib.iml" filepath="E:\myFile\code\android\MarLib\LibView\lib.iml" />
     </modules>
   </component>
 </project>
