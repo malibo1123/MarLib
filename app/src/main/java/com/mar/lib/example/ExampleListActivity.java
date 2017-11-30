@@ -41,6 +41,10 @@ public class ExampleListActivity extends AppCompatActivity {
         showActivity(EnviesExample.class);
     }
 
+    public void showAndroidWidgetNotOftenUseExample(View view){
+        showActivity(AndroidNotOftenUseWidgetExample.class);
+    }
+
     private void showActivity(Class<? extends Activity> cls){
         Intent i = new Intent(this,cls);
         startActivity(i);

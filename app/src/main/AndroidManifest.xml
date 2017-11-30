@@ -18,6 +18,7 @@
 
         <activity android:name=".WidgetExample"/>
         <activity android:name=".EnviesExample" />
+        <activity android:name=".AndroidNotOftenUseWidgetExample" />
     </application>
 
 </manifest>

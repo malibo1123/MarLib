@@ -38,11 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"
-        android:text="开始测试"
+        android:text="不常见Android官方控件示例"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:paddingTop="5dp"
-        android:paddingBottom="5dp"/>
+        android:paddingBottom="5dp"
+        android:onClick="showAndroidWidgetNotOftenUseExample"/>
 </LinearLayout>

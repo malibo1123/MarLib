@@ -1,1 +1,1 @@
-include ':app', ':LibView', ':LibUtil', ':LibAsync', ':RxJava'
+include ':app', ':LibView', ':LibUtil', ':LibAsync'

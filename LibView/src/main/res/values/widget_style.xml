@@ -118,8 +118,12 @@
     </declare-styleable>
     <declare-styleable name="EmbellishTitle">
         <attr name="embellishTitleText" format="string" />
-        <attr name="embellishTitleTextColor" format="color" />
+        <attr name="embellishTitleLeft" format="string" />
+        <attr name="embellishTitleRight" format="string" />
+        <attr name="embellishTitleTextCenterColor" format="color" />
+        <attr name="embellishTitleTextSidesColor" format="color" />
         <attr name="embellishTitleTextSize" format="dimension" />
+        <attr name="embellishTitleIcon" format="reference" />
     </declare-styleable>
     <declare-styleable name="ShadowImageView">
         <attr name="shadowRound" format="dimension" />

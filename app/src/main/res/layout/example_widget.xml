@@ -18,7 +18,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            custom:embellishTitleText="IconText示例"/>
+            custom:embellishTitleText="IconText示例"
+            custom:embellishTitleLeft="|||||"
+            custom:embellishTitleRight="|||||"
+            custom:embellishTitleTextCenterColor="#FFff0000"
+            custom:embellishTitleTextSidesColor="@android:color/holo_green_light"
+            custom:embellishTitleTextSize="8sp"
+            custom:embellishTitleIcon="@drawable/icon_embellish"/>
         <com.mar.lib.widget.IconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
