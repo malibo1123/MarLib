@@ -99,7 +99,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         if(!StrUtils.isStrNull(stringList)) {
             String[] strArray = stringList.split("\\|");
             if(strArray!=null && strArray.length>0){
-                List<String> lists = new ArrayList<String>(strArray.length);
+                ArrayList<String> lists = new ArrayList<String>(strArray.length);
                 for(int i=0;i<strArray.length;i++){
                     lists.add(strArray[i]);
                 }
@@ -251,28 +251,26 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         int maxSpace = mWidth - paddingLeft - paddingRight;
         if (maxSpace <= 0)
             return;
-        if(alignment == TEXT_ALIGN_CENTER) {
-            for (int i = 0; i < lists.size(); i++) {//需要对每一个字符串进行裁剪
-                String s = lists.get(i);
-                boolean shouldCut = false;
-                int count = 0;//用来判断最多裁剪次数，防止死循环
-                while (true) {
-                    count++;
-                    float startX = (maxSpace - mPaint.measureText(s)) / 2 + paddingLeft;
-                    if (startX < paddingLeft) {
-                        s = s.substring(0,s.length()-1);
-                        shouldCut = true;
-                    }else{
-                        break;
-                    }
-                    if(count>=s.length()) break;
+        for (int i = 0; i < lists.size(); i++) {//需要对每一个字符串进行裁剪
+            String s = lists.get(i);
+            boolean shouldCut = false;
+            int count = 0;//用来判断最多裁剪次数，防止死循环
+            while (true) {
+                count++;
+                float startX = (maxSpace - mPaint.measureText(s)) / 2 + paddingLeft;
+                if (startX < paddingLeft) {
+                    s = s.substring(0,s.length()-1);
+                    shouldCut = true;
+                }else{
+                    break;
                 }
-                if(shouldCut)
-                    lists.set(i,s.substring(0,s.length()-1)+"...");
+                if(count>=s.length()) break;
             }
-            hasCut = true;
-            getInAndOutStr();
+            if(shouldCut)
+                lists.set(i,s.substring(0,s.length()-1)+"...");
         }
+        hasCut = true;
+        getInAndOutStr();
     }
 
     private void drawInAndOutStr(Canvas canvas){
@@ -346,7 +344,6 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
     @Override
     public void setTextSize(float size) {
         super.setTextSize(size);
-        baseLine = 0;
     }
 
     @Override
