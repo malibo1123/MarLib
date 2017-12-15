@@ -23,6 +23,12 @@
             <enum name="up"  value="0"/>
             <enum name="down"  value="1"/>
         </attr>
+        <attr name="stringList" format="string"/>
+        <attr name="sameDirection" format="boolean"/>
+        <attr name="verticalSwitchStyle" >
+            <enum name="inAndOut" value="1"/>
+            <enum name="firstOutThanIn" value="2"/>
+        </attr>
     </declare-styleable>
     <!--此自定义属性为自定义控件NameValueText使用 -->
     <declare-styleable name="CustomNameValueText">

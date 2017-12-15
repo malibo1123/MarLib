@@ -18,12 +18,12 @@ public class WidgetExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.example_widget);
-        VerticalSwitchTextView competCapabilityTex = (VerticalSwitchTextView)findViewById(R.id.award);
-        ArrayList<String> content = new ArrayList<>(2);
-        content.add("荣耀榜主");
-        content.add("排名NO1");
-        competCapabilityTex.setTextContent(content);
-        competCapabilityTex.setSwitchSameDirection(false);
-        competCapabilityTex.startSwitch();
+//        VerticalSwitchTextView competCapabilityTex = (VerticalSwitchTextView)findViewById(R.id.award);
+//        ArrayList<String> content = new ArrayList<>(2);
+//        content.add("荣耀榜主");
+//        content.add("排名NO1");
+//        competCapabilityTex.setTextContent(content);
+//        competCapabilityTex.setSwitchSameDirection(false);
+//        competCapabilityTex.startSwitch();
     }
 }
