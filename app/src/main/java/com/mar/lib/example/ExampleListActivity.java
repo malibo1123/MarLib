@@ -45,6 +45,14 @@ public class ExampleListActivity extends AppCompatActivity {
         showActivity(AndroidNotOftenUseWidgetExample.class);
     }
 
+    public void showPhysicsExample(View view){
+        showActivity(PhysicsExampleActivity.class);
+    }
+
+    public void showSpeedViewExample(View view){
+        showActivity(SpeedViewExample.class);
+    }
+
     private void showActivity(Class<? extends Activity> cls){
         Intent i = new Intent(this,cls);
         startActivity(i);

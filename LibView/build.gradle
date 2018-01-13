@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
@@ -26,9 +25,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:26.1.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:palette-v7:25.0.0'
+    compile 'com.android.support:palette-v7:26.1.0'
     compile files('libs/sqlcipher.jar')
     implementation project(':LibUtil')
+    compile 'org.jbox2d:jbox2d-library:2.2.1.1'
+    compile 'com.github.Commit451:TranslationViewDragHelper:1.0.1'
+    compile "com.wefika:flowlayout:0.4.1"
 }

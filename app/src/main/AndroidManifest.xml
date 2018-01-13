@@ -19,6 +19,9 @@
         <activity android:name=".WidgetExample"/>
         <activity android:name=".EnviesExample" />
         <activity android:name=".AndroidNotOftenUseWidgetExample" />
+        <activity android:name=".PhysicsExampleActivity" />
+        <activity android:name=".SpeedViewExample" />
+        <activity android:name=".ControlActivity" />
     </application>
 
 </manifest>
