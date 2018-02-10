@@ -1,1 +1,1 @@
-include ':app', ':LibView', ':LibUtil', ':LibAsync'
+include ':app', ':LibView', ':LibUtil', ':LibAsync', ':libio'
