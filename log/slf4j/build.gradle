@@ -1,0 +1,28 @@
+apply plugin: 'java-library'
+
+//jar {
+//    from {
+//        //添加依懒到打包文件
+//        // configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//        configurations.runtime.each { println it.name }
+//        configurations.runtime.collect {
+//            if (!it.parent.equals("com.mar.lib.log.slf4j.impl"))
+//                zipTree(it)
+//        }
+//    }
+//}
+//configurations {
+//    jmeConfiguration
+//}
+//
+//configurations.jmeConfiguration {
+//    exclude group:"com.mar.lib.log.slf4j.impl.*"
+//}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+//    jmeConfiguration configurations.runtime
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

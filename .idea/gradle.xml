@@ -12,7 +12,10 @@
             <option value="$PROJECT_DIR$/LibUtil" />
             <option value="$PROJECT_DIR$/LibView" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/libio" />
+            <option value="$PROJECT_DIR$/log" />
+            <option value="$PROJECT_DIR$/log/LogAndroid" />
+            <option value="$PROJECT_DIR$/log/jdk" />
+            <option value="$PROJECT_DIR$/log/slf4j" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

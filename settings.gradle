@@ -1,1 +1,2 @@
-include ':app', ':LibView', ':LibUtil', ':LibAsync', ':libio'
+include ':app', ':LibView', ':LibUtil', ':LibAsync', ':log:slf4j', ':log:jdk',
+        ':log:LogAndroid'
