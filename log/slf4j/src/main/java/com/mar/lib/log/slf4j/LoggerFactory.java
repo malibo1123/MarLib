@@ -37,6 +37,7 @@ public final class LoggerFactory {
     static final int FAILED_INITIALIZATION = 2;
     static final int SUCCESSFUL_INITIALIZATION = 3;
     static final int NOP_FALLBACK_INITIALIZATION = 4;
+    private static final String BindClassName = "org.slf4j.impl.StaticLoggerBinder";
 
     static volatile int INITIALIZATION_STATE = UNINITIALIZED;
     static final SubstituteLoggerFactory SUBST_FACTORY = new SubstituteLoggerFactory();
@@ -47,9 +48,13 @@ public final class LoggerFactory {
     static final String JAVA_VENDOR_PROPERTY = "java.vendor.url";
 
     static boolean DETECT_LOGGER_NAME_MISMATCH = Util.safeGetBooleanSystemProperty(DETECT_LOGGER_NAME_MISMATCH_PROPERTY);
+    // We need to use the name of the StaticLoggerBinder class, but we can't
+    // reference
+    // the class itself.
+    private static String STATIC_LOGGER_BINDER_PATH = "com/mar/lib/slf4j/impl/StaticLoggerBinder.class";
 
     /**
-     * It is LoggerFactory's responsibility to track version changes and manage
+     * It is LoggerFactory'BindClassName responsibility to track version changes and manage
      * the compatibility list.
      * <p/>
      * <p/>
@@ -86,9 +91,9 @@ public final class LoggerFactory {
     private static boolean messageContainsOrgSlf4jImplStaticLoggerBinder(String msg) {
         if (msg == null)
             return false;
-        if (msg.contains("org/slf4j/impl/StaticLoggerBinder"))
+        if (msg.contains(BindClassName))
             return true;
-        if (msg.contains("org.slf4j.impl.StaticLoggerBinder"))
+        if (msg.contains(BindClassName))
             return true;
         return false;
     }
@@ -230,7 +235,7 @@ public final class LoggerFactory {
                 Util.report("See " + VERSION_MISMATCH + " for further details.");
             }
         } catch (NoSuchFieldError nsfe) {
-            // given our large user base and SLF4J's commitment to backward
+            // given our large user base and SLF4J'BindClassName commitment to backward
             // compatibility, we cannot cry here. Only for implementations
             // which willingly declare a REQUESTED_API_VERSION field do we
             // emit compatibility warnings.
@@ -239,11 +244,6 @@ public final class LoggerFactory {
             Util.report("Unexpected problem occured during version sanity check", e);
         }
     }
-
-    // We need to use the name of the StaticLoggerBinder class, but we can't
-    // reference
-    // the class itself.
-    private static String STATIC_LOGGER_BINDER_PATH = "com/mar/lib/slf4j/impl/StaticLoggerBinder.class";
 
     static Set<URL> findPossibleStaticLoggerBinderPathSet() {
         // use Set instead of list in order to deal with bug #138
@@ -340,7 +340,7 @@ public final class LoggerFactory {
         if (DETECT_LOGGER_NAME_MISMATCH) {
             Class<?> autoComputedCallingClass = Util.getCallingClass();
             if (autoComputedCallingClass != null && nonMatchingClasses(clazz, autoComputedCallingClass)) {
-                Util.report(String.format("Detected logger name mismatch. Given name: \"%s\"; computed name: \"%s\".", logger.getName(),
+                Util.report(String.format("Detected logger name mismatch. Given name: \"%BindClassName\"; computed name: \"%BindClassName\".", logger.getName(),
                                 autoComputedCallingClass.getName()));
                 Util.report("See " + LOGGER_NAME_MISMATCH_URL + " for an explanation");
             }
