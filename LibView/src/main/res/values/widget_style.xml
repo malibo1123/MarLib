@@ -27,7 +27,7 @@
         <attr name="sameDirection" format="boolean"/>
         <attr name="verticalSwitchStyle" >
             <enum name="inAndOut" value="1"/>
-            <enum name="firstOutThanIn" value="2"/>
+            <enum name="firstOutThenIn" value="2"/>
         </attr>
     </declare-styleable>
     <!--此自定义属性为自定义控件NameValueText使用 -->

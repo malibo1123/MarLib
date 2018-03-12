@@ -111,7 +111,7 @@
             custom:switchDuaration = "1000"
             custom:idleDuaration = "3000"
             custom:alignment="center"
-            custom:verticalSwitchStyle="firstOutThanIn"
+            custom:verticalSwitchStyle="firstOutThenIn"
             custom:stringList="这是|先出|后进|的示例"/>
         <com.mar.lib.widget.EmbellishTitle
             android:layout_width="match_parent"

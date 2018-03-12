@@ -13,10 +13,11 @@ import android.util.Log;
 import android.view.animation.LinearInterpolator;
 
 import com.mar.lib.R;
-import com.mar.lib.util.StrUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mar.lib.util.StrUtils.isStrNull;
 
 /**
  * 此自定义控件主要用来显示能够垂直翻转的多个文本<br>
@@ -36,12 +37,12 @@ import java.util.List;
  *  如果在代码中调用，可以使用{@link #setTextContent(List)}函数进行设置。
  *  <pre class="prettyprint">
  *      VerticalSwitchTextView competCapabilityTex = (VerticalSwitchTextView)findViewById(R.id.VerticalSwitchTextView1);
-        ArrayList<VerticalSwitchTextView.TextItem> content = new ArrayList<>(2);
-        content.add(new VerticalSwitchTextView.TextItem("荣耀榜主 排名\nNO1",
-                        new int[]{Color.RED,Color.GREEN},
-                        new int[]{0,4,11}));
-        content.add(new VerticalSwitchTextView.TextItem("杨柳青青江水平杨柳青青江水平杨柳青青江被剪切了吗\n闻郎江上踏歌声\n东边日出西边雨\n道是无晴却有晴"));
-        competCapabilityTex.setTextContent(content);
+ ArrayList<VerticalSwitchTextView.TextItem> content = new ArrayList<>(2);
+ content.add(new VerticalSwitchTextView.TextItem("荣耀榜主 排名\nNO1",
+ new int[]{Color.RED,Color.GREEN},
+ new int[]{0,4,11}));
+ content.add(new VerticalSwitchTextView.TextItem("杨柳青青江水平杨柳青青江水平杨柳青青江被剪切了吗\n闻郎江上踏歌声\n东边日出西边雨\n道是无晴却有晴"));
+ competCapabilityTex.setTextContent(content);
  *  </pre>
  *  <ol>
  *  <li>{@link TextItem#text}用来传入需要显示的文字，文字可以包括换行符；
@@ -59,17 +60,18 @@ import java.util.List;
  *              了{@link TextItem#colors}就必须设置{@link TextItem#marks}<br>
  *       2、{@link TextItem#marks}的长度一定比{@link TextItem#colors}的长度大1；<br>
  *       3、{@link TextItem#marks}数组一定是且必须是以0开始，以{@link TextItem#text}的长度结束；<br>
- * Created by malibo on 2017/10/23.
+ * Created by malibo on 2018/3/9.
  */
+
 public class VerticalSwitchTextView extends AppCompatTextView implements
         ValueAnimator.AnimatorUpdateListener,Animator.AnimatorListener{
     private static final int DEFAULT_SWITCH_DURATION = 200;//默认切换时间
-    private static final int DEFAULT_IDLE_DURATION = 3000;
+    private static final int DEFAULT_IDLE_DURATION = 3000;//默认停留时间
     public static final int TEXT_ALIGN_CENTER = 0;
     public static final int TEXT_ALIGN_LEFT = 1;
     public static final int TEXT_ALIGN_RIGHT = 2;
     public static final int StyleInAndOut = 1;
-    public static final int StyleFirstOutThanIn = 2;
+    public static final int StyleFirstOutThenIn = 2;
 
     private List<TextItem> lists;//会循环显示的文本内容
     private int contentSize;
@@ -85,19 +87,18 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
     private boolean sameDirection = true;//是否固定只朝一个方向滚动
     private int switchStyle = StyleInAndOut;
     private float currentAnimatedValue = 0.0f;
-    private ValueAnimator animator;
+    private ValueAnimator animator;//轮播的切换动画
     private boolean hasCut = false;//记录是否已经对文本进行裁剪，如果设置居中而文本过长，会对文本进行裁剪
 
-//    private float verticalOffset = 0;
-    private int mWidth;
-    private int mHeight;
-    private int addHeightTimes = 1;
-    private int paddingLeft = 0;
-    private int paddingBottom = 0;
-    private int paddingTop = 0;
-    private int paddingRight = 0;
-
-    private Paint mPaint;
+    private int mWidth;//控件宽度
+    private int mHeight;//控件高度
+    private int addHeightTimes = 1;//用来记录最多的item有多少行
+    private int paddingLeft = 0,paddingBottom = 0,paddingTop = 0,paddingRight = 0;//上下左右四个padding
+    private float baseLine = 0;//第一行绘制的基线位置
+    private float fontHeight;//字体高度
+    private Paint mPaint;//用来绘制文字的画刷
+    private float inTextStartX;//渐入文本中轴线X坐标
+    private float outTextStartX;//渐出文本中轴线X坐标
 
     public VerticalSwitchTextView(Context context) {
         this(context, null);
@@ -123,7 +124,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
             array.recycle();
         }
         init();
-        if(!StrUtils.isStrNull(stringList)) {
+        if(!isStrNull(stringList)) {
             String[] strArray = stringList.split("\\|");
             if(strArray!=null && strArray.length>0){
                 ArrayList<TextItem> lists = new ArrayList<TextItem>(strArray.length);
@@ -150,14 +151,14 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         hasCut = false;
         contentSize = lists.size();
         getAddHeightTimes(content);
+        //如果文本换行数增加，需要调整文本高度
         if(addHeightTimes>1) {
             Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
-            //计算文字高度
             fontHeight = fontMetrics.bottom - fontMetrics.top + 1;
             mHeight = (int) (fontHeight  * addHeightTimes) + paddingBottom + paddingTop;
             setHeight(mHeight);
         }
-        getInAndOutStr();
+        getInAndOutItem();
         if (contentSize > 1) {
             startSwitch();
         }else{
@@ -190,6 +191,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         }
     }
 
+    /**获取传入的list中的最大行数*/
     private void getAddHeightTimes(List<TextItem> content){
         if(contentSize>0){
             for(int i=0;i<contentSize;i++){
@@ -213,7 +215,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         animator.addListener(this);
     }
 
-    private void getInAndOutStr(){
+    private void getInAndOutItem(){
         if (lists == null || lists.size() == 0)
             return;
         if(currentIndex>=lists.size())
@@ -227,8 +229,6 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         }
     }
 
-    private float baseLine = 0;
-    private float fontHeight;
     /**
      * 主要用来调整TextView的高度
      * @param widthMeasureSpec
@@ -260,58 +260,35 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         Log.d("marLib","高度："+( bottom - top));
     }
 
-    /**
-     * 文本中轴线X坐标
-     */
-    private float inTextStartX;
-    private float outTextStartX;
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (contentSize <= 0 || inItem ==null || outItem ==null) {
             return;
         }
-        getStartX();
-        if(switchStyle==StyleFirstOutThanIn)
+        if(!hasCut)
+            cutStr();
+        String[] inStrs = inItem.text.split("\n");
+        inTextStartX = getStartX(inStrs.length<=1?inItem.text:inStrs[0]);
+        String[] outStrs = outItem.text.split("\n");
+        outTextStartX = getStartX(outStrs.length<=1?inItem.text:outStrs[0]);
+        if(switchStyle== StyleFirstOutThenIn)
             drawFirstInThanOut(canvas);
         else
             drawInAndOutStr(canvas);
     }
 
-    private void getStartX() {
-        //计算绘制的文字中心位置
+    private float getStartX(String text) {
+        //计算绘制的文字中心水平开始位置
         switch (alignment) {
-            case TEXT_ALIGN_CENTER:
-                if(!hasCut)
-                    cutStr();
-                inTextStartX = (mWidth + paddingLeft - paddingRight -
-                        getFirstLength(inItem.text)) / 2;
-                outTextStartX = (mWidth + paddingLeft - paddingRight -
-                        getFirstLength(outItem.text)) / 2 ;
-                break;
             case TEXT_ALIGN_LEFT:
-                inTextStartX = paddingLeft;
-                outTextStartX = paddingLeft;
-                break;
+                return paddingLeft;
             case TEXT_ALIGN_RIGHT:
-                inTextStartX = mWidth - paddingRight - getFirstLength(inItem.text);
-                outTextStartX = mWidth - paddingRight - getFirstLength(outItem.text);
-                break;
-        }
-    }
-
-    private float getFirstLength(String s){
-        String[] ss = s.split("\n");
-        if(ss.length<=1) {
-            return mPaint.measureText(s);
-        }else{
-//            float mostMax = mPaint.measureText(ss[0]);
-//            for(int i=1;i<ss.length;i++){
-//                if(mPaint.measureText(ss[i])>mostMax)
-//                    mostMax = mPaint.measureText(ss[i]);
-//            }
-//            return mostMax;
-            return mPaint.measureText(ss[0]);
+                return mWidth - paddingRight - mPaint.measureText(text);
+            case TEXT_ALIGN_CENTER:
+            default:
+                return (mWidth + paddingLeft - paddingRight -
+                        mPaint.measureText(text)) / 2;
         }
     }
 
@@ -324,7 +301,6 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         for (int i = 0; i < lists.size(); i++) {//需要对每一个字符串进行裁剪
             String[] splits = lists.get(i).text.split("\n");
             for(int j=0;j<splits.length;j++) {
-//                String s = splits[j];
                 boolean shouldCut = false;
                 int count = 0;//用来判断最多裁剪次数，防止死循环
                 while (true) {
@@ -353,7 +329,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
             }
         }
         hasCut = true;
-        getInAndOutStr();
+        getInAndOutItem();
     }
 
     private void drawInAndOutStr(Canvas canvas){
@@ -389,15 +365,15 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         }
     }
 
-    private void drawText(Canvas canvas,TextItem textItem,float beginX,float beginY){
+    private void drawText(Canvas canvas, TextItem textItem, float beginX, float beginY){
         boolean drawSucess = true;
         String[] splits = textItem.text.split("\n");
         if(splits.length<addHeightTimes){
             beginY += fontHeight*(addHeightTimes-splits.length)/2;
         }
         if(textItem.marks!=null && textItem.marks.length!=0 &&
-           textItem.colors!=null && textItem.colors.length!=0 &&
-           textItem.marks.length==textItem.colors.length+1){
+                textItem.colors!=null && textItem.colors.length!=0 &&
+                textItem.marks.length==textItem.colors.length+1){
             for(int i=0;i<textItem.colors.length;i++){
                 if(textItem.marks[i]>textItem.text.length()){
                     drawSucess = false;
@@ -405,8 +381,6 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
                 }
                 mPaint.setColor(textItem.colors[i]);
                 String s = textItem.text.substring(textItem.marks[i],textItem.marks[i+1]);
-//                canvas.drawText(s, beginX, beginY, mPaint);
-//                beginX += mPaint.measureText(s);
 
                 String[] ss = s.split("\n");
                 if(ss.length<=1) {
@@ -417,19 +391,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
                         canvas.drawText(ss[j], beginX, beginY, mPaint);
                         if(j<ss.length-1) {
                             beginY += fontHeight;
-                            //计算绘制的文字中心位置
-                            switch (alignment) {
-                                case TEXT_ALIGN_CENTER:
-                                    beginX = (mWidth + paddingLeft - paddingRight -
-                                            mPaint.measureText(ss[j+1])) / 2;
-                                    break;
-                                case TEXT_ALIGN_LEFT:
-                                    beginX = paddingLeft;
-                                    break;
-                                case TEXT_ALIGN_RIGHT:
-                                    beginX = mWidth - paddingRight - mPaint.measureText(ss[j+1]);
-                                    break;
-                            }
+                            beginX = getStartX(ss[j+1]);
                         }else{
                             beginX += mPaint.measureText(ss[j]);
                         }
@@ -449,19 +411,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
                     canvas.drawText(ss[i], beginX, beginY, mPaint);
                     if(i<ss.length-1) {
                         beginY += fontHeight;
-                        //计算绘制的文字中心位置
-                        switch (alignment) {
-                            case TEXT_ALIGN_CENTER:
-                                beginX = (mWidth + paddingLeft - paddingRight -
-                                        mPaint.measureText(ss[i+1])) / 2;
-                                break;
-                            case TEXT_ALIGN_LEFT:
-                                beginX = paddingLeft;
-                                break;
-                            case TEXT_ALIGN_RIGHT:
-                                beginX = mWidth - paddingRight - mPaint.measureText(ss[i+1]);
-                                break;
-                        }
+                        beginX = getStartX(ss[i+1]);
                     }else{
                         beginX += mPaint.measureText(ss[i]);
                     }
@@ -543,7 +493,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
             }
         }
 
-        public TextItem(String text,int[] colors,int[] marks){
+        public TextItem(String text, int[] colors, int[] marks){
             if(text!=null){
                 this.text = text;
             }
