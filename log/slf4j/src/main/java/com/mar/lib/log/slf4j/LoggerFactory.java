@@ -51,7 +51,7 @@ public final class LoggerFactory {
     // We need to use the name of the StaticLoggerBinder class, but we can't
     // reference
     // the class itself.
-    private static String STATIC_LOGGER_BINDER_PATH = "com/mar/lib/slf4j/impl/StaticLoggerBinder.class";
+    private static String STATIC_LOGGER_BINDER_PATH = "com/mar/lib/log/slf4j/impl/StaticLoggerBinder.class";
 
     /**
      * It is LoggerFactory'BindClassName responsibility to track version changes and manage

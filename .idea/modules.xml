@@ -6,9 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/LibUtil/LibUtil.iml" filepath="$PROJECT_DIR$/LibUtil/LibUtil.iml" />
       <module fileurl="file://$PROJECT_DIR$/LibView/LibView.iml" filepath="$PROJECT_DIR$/LibView/LibView.iml" />
       <module fileurl="file://$PROJECT_DIR$/log/LogAndroid/LogAndroid.iml" filepath="$PROJECT_DIR$/log/LogAndroid/LogAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/log/LogJdk/LogJdk.iml" filepath="$PROJECT_DIR$/log/LogJdk/LogJdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/MarLib.iml" filepath="$PROJECT_DIR$/MarLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/log/jdk/jdk.iml" filepath="$PROJECT_DIR$/log/jdk/jdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/log/log.iml" filepath="$PROJECT_DIR$/log/log.iml" />
       <module fileurl="file://$PROJECT_DIR$/log/slf4j/slf4j.iml" filepath="$PROJECT_DIR$/log/slf4j/slf4j.iml" />
     </modules>

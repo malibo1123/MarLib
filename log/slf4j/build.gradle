@@ -20,7 +20,7 @@ apply plugin: 'java-library'
 //}
 
 dependencies {
-    api fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 //    jmeConfiguration configurations.runtime
 }
 

@@ -10,8 +10,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ExampleListActivity extends AppCompatActivity {
+import com.mar.lib.log.slf4j.Logger;
+import com.mar.lib.log.slf4j.LoggerFactory;
 
+public class ExampleListActivity extends AppCompatActivity {
+    private Logger logger = LoggerFactory.getLogger("example");
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -56,6 +59,7 @@ public class ExampleListActivity extends AppCompatActivity {
     private void showActivity(Class<? extends Activity> cls){
         Intent i = new Intent(this,cls);
         startActivity(i);
+        logger.info("查看的例子是："+cls.getName());
     }
 
 //    public void testPostTime(View view){
