@@ -33,4 +33,5 @@ dependencies {
     compile 'org.jbox2d:jbox2d-library:2.2.1.1'
     compile 'com.github.Commit451:TranslationViewDragHelper:1.0.1'
     compile "com.wefika:flowlayout:0.4.1"
+    implementation project(':log:slf4j')
 }

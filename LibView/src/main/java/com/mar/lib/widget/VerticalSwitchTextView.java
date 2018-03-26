@@ -10,21 +10,25 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.animation.LinearInterpolator;
 
 import com.mar.lib.R;
+import com.mar.lib.log.slf4j.Logger;
+import com.mar.lib.log.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.mar.lib.util.StrUtils.isStrNull;
 
+
 /**
  * 此自定义控件主要用来显示能够垂直翻转的多个文本<br>
  * 主要用于翻转显示文本<br><br>在xml中可以自定义的参数如下：<br>
  *      switchDuaration --------------- 文本切换的时间；<br>
  *      idleDuaration ----------------- 文本停留的时间；<br>
+ *      sameDirection ----------------- 是否只朝一个方向滚动，默认为true
+ *                      只朝一个方向滚动，可以设置为false这样会上下交替滚动；<br>
  *      alignment -------------------- 文字的对齐方式，可以是左对齐(left)或者
  *                      居中(center)或者右对齐(right)；<br>
  *      switchOrientation -------------定义翻转的方向，可以是向上翻转或者向下翻转；<br>
@@ -55,7 +59,7 @@ import static com.mar.lib.util.StrUtils.isStrNull;
  *              {@link TextItem#colors}用来描述这几段的颜色而{@link TextItem#marks}用来描述怎么
  *              划分。比如上面的“荣耀榜主 排名\nNO1”分成了两段“荣耀榜主”和“  排名\nNO1”，
  *              也就是分别为[0,4]以及[4,11].注意这里面包含了一个空格，必须计算在内，换行符"\n"
- *              的长度为1。
+ *              算作1个字符。
  *  </ol>
  *  <b>注意：1、可以不设置{@link TextItem#colors}和{@link TextItem#marks}；但是设置
  *              了{@link TextItem#colors}就必须设置{@link TextItem#marks}<br>
@@ -64,12 +68,13 @@ import static com.mar.lib.util.StrUtils.isStrNull;
  *  <br><b>另：<br>
  *  1、该轮播控件默认朝一个方向滚动，如果希望可以上下交替滚动，可以调用函数{@link #setSwitchSameDirection(boolean)}
  *  来进行设置，只需要传入false即可。<br>
- *  2、如果只是需要更新list中的某一项，可以使用函数{@link #updateText(TextItem, int)}，效率更高</b>
+ *  2、如果只是需要更新list中的某一项，可以使用函数{@link #updateItem(TextItem, int)}，效率更高</b>
  *
  * Created by malibo on 2018/3/9.
  */
 public class VerticalSwitchTextView extends AppCompatTextView implements
         ValueAnimator.AnimatorUpdateListener,Animator.AnimatorListener{
+    public Logger logger = LoggerFactory.getLogger(VerticalSwitchTextView.class.getSimpleName());
     private static final int DEFAULT_SWITCH_DURATION = 200;//默认切换时间
     private static final int DEFAULT_IDLE_DURATION = 3000;//默认停留时间
     public static final int TEXT_ALIGN_CENTER = 0;
@@ -116,7 +121,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
     public VerticalSwitchTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.VerticalSwitchTextView);
-        String stringList;
+        String stringList = null;
         try {
             switchDuaration = array.getInt(R.styleable.VerticalSwitchTextView_switchDuaration, DEFAULT_SWITCH_DURATION);
             idleDuaration = array.getInt(R.styleable.VerticalSwitchTextView_idleDuaration, DEFAULT_IDLE_DURATION);
@@ -125,16 +130,18 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
             alignment = array.getInt(R.styleable.VerticalSwitchTextView_alignment, TEXT_ALIGN_CENTER);
             sameDirection = array.getBoolean(R.styleable.VerticalSwitchTextView_sameDirection, true);
             stringList = array.getString(R.styleable.VerticalSwitchTextView_stringList);
-        } finally {
+        }catch (Exception e){
+            logger.warn("获取自定义属性出错",e);
+        }finally {
             array.recycle();
         }
         init();
         if(!isStrNull(stringList)) {
             String[] strArray = stringList.split("\\|");
-            if(strArray!=null && strArray.length>0){
+            if(strArray.length>0){
                 ArrayList<TextItem> lists = new ArrayList<TextItem>(strArray.length);
-                for(int i=0;i<strArray.length;i++){
-                    TextItem item = new TextItem(strArray[i]);
+                for (String aStrArray : strArray) {
+                    TextItem item = new TextItem(aStrArray);
                     lists.add(item);
                 }
                 setTextContent(lists);
@@ -179,7 +186,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
      * @param item 新的item
      * @param index 新item的索引
      */
-    public void updateText(TextItem item,int index){
+    public void updateItem(TextItem item, int index){
         if(item==null || TextUtils.isEmpty(item.text) ||
                 lists==null || lists.size()<=0 ||
                 index<0 || index>lists.size()){
@@ -188,6 +195,21 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         lists.set(index,item);
         outItem = lists.get(currentIndex);
         inItem = lists.get((currentIndex + 1) % contentSize);
+        invalidate();
+    }
+
+    /**
+     * 如果只是需要更新list中的某一项，可以使用此函数，效率更高
+     * @param text 需要更新的文本
+     * @param index 更新的item的索引
+     */
+    public void updateText(String text, int index){
+        if(TextUtils.isEmpty(text) ||
+                lists==null || lists.size()<=0 ||
+                index<0 || index>lists.size()){
+            return;
+        }
+        lists.get(index).text = text;
         invalidate();
     }
 
@@ -264,10 +286,12 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         super.setText(text, type);
     }
 
+    public List<TextItem> getListItems() {
+        return lists;
+    }
+
     /**
      * 主要用来调整TextView的高度
-     * @param widthMeasureSpec
-     * @param heightMeasureSpec
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -287,12 +311,6 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
         textBaseY = mHeight - (mHeight - fontHeight) / 2 - fontMetrics.bottom;
         baseLine = paddingTop - fontMetrics.top;
         setMeasuredDimension(mWidth, mHeight);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-        Log.d("marLib","高度："+( bottom - top));
     }
 
     @Override
@@ -353,7 +371,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
                     splits[j] = splits[j].substring(0, splits[j].length() - 1) + "...";
             }
             if(splits.length>1){
-                StringBuffer sb = new StringBuffer(splits[0]);
+                StringBuilder sb = new StringBuilder(splits[0]);
                 for(int p=1;p<splits.length;p++){
                     sb.append("\n");
                     sb.append(splits[p]);
@@ -412,7 +430,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
             int itemLength = textItem.text.length();
             for(int i=0;i<textItem.colors.length;i++){
                 if(textItem.marks[i]>itemLength ||
-                   textItem.marks[i+1]>itemLength){
+                        textItem.marks[i+1]>itemLength){
                     drawSucess = false;
                     break;
                 }
@@ -424,7 +442,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
                     canvas.drawText(s, beginX, beginY, mPaint);
                     if(s.endsWith("\n")) {
                         if(i<textItem.colors.length-1 && textItem.marks[i+1]<=itemLength &&
-                           textItem.marks[i+2]<=itemLength) {
+                                textItem.marks[i+2]<=itemLength) {
                             beginX = getStartX(textItem.text.substring(
                                     textItem.marks[i+1],textItem.marks[i+2]));
                             beginY += fontHeight;
@@ -531,7 +549,7 @@ public class VerticalSwitchTextView extends AppCompatTextView implements
 
     public static class TextItem{
         @NonNull
-        String text = "";
+        public String text = "";
         int[] colors;
         int[] marks;
 
