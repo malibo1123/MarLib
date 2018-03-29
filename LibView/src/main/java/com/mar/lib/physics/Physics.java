@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.commit451.translationviewdraghelper.TranslationViewDragHelper;
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;

@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 import com.mar.lib.log.slf4j.Logger;
 import com.mar.lib.log.slf4j.LoggerFactory;
 

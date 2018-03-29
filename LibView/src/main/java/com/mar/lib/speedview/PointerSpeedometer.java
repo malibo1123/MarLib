@@ -14,7 +14,7 @@ import android.graphics.SweepGradient;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 import com.mar.lib.speedview.components.Indicators.SpindleIndicator;
 
 /**

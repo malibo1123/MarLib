@@ -20,7 +20,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 import com.mar.lib.speedview.util.OnSectionChangeListener;
 import com.mar.lib.speedview.util.OnSpeedChangeListener;
 

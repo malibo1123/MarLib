@@ -10,7 +10,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 
 import com.mar.lib.speedview.components.Indicators.NormalIndicator;
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * this Library build By Anas Altair

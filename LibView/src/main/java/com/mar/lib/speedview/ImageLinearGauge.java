@@ -7,7 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * this Library build By Anas Altair

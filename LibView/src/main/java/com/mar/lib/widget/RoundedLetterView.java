@@ -11,7 +11,7 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * 此自定义控件主要用来显示一个有圆形背景的标题。<br>

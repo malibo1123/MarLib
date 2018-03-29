@@ -11,7 +11,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * 一个自定义的圆环进度条

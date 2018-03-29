@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 public class UISwitch extends View implements View.OnTouchListener, View.OnClickListener {
 

@@ -193,4 +193,18 @@
         <attr name="volume_bg_line_color" format="color" />
         <attr name="volume_bg_line_width" format="integer" />
     </declare-styleable>
+    <declare-styleable name="FlipImageView">
+        <attr name="isAnimated" format="boolean" />
+        <attr name="isFlipped" format="boolean" />
+        <attr name="flipDrawable" format="reference" />
+        <attr name="flipDuration" format="integer" />
+        <attr name="flipInterpolator" format="reference" />
+        <attr name="flipRotations">
+            <flag name="none" value="0" />
+            <flag name="x" value="1" />
+            <flag name="y" value="2" />
+            <flag name="z" value="4" />
+        </attr>
+        <attr name="reverseRotation" format="boolean"></attr>
+    </declare-styleable>
 </resources>

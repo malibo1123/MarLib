@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 import org.jbox2d.dynamics.BodyType;
 

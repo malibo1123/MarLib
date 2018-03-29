@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 public class ShadowImageView extends RelativeLayout {
 

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * Created by codeest on 2016/11/9.

@@ -11,7 +11,7 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 import com.mar.lib.speedview.components.Indicators.Indicator;
 
 /**

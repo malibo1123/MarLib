@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /** 主要用于图片配文字的场景<br>
  * textValue--------------------要显示的文本<br>

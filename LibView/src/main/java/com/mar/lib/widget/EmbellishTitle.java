@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * Created by malibo on 2017/11/9.

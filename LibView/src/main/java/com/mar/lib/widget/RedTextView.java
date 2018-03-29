@@ -13,7 +13,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 /**
  * @autor yincheng
  * @date 2017/7/3 003 16:03

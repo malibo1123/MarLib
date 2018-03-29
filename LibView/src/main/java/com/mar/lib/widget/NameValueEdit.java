@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * 此自定义控件主要用来展示“名称-值”类型的视图，且需要输入值

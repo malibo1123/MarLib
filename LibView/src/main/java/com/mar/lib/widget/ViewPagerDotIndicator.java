@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * viewpager页面切换的圆点指示器---自定义view

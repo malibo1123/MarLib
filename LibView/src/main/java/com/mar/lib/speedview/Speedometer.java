@@ -8,7 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 import com.mar.lib.speedview.components.Indicators.ImageIndicator;
 import com.mar.lib.speedview.components.Indicators.Indicator;
 import com.mar.lib.speedview.components.Indicators.NoIndicator;

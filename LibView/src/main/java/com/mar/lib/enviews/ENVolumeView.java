@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 /**
  * Created by codeest on 16/11/13.

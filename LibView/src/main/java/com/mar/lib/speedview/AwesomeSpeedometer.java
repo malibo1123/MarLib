@@ -12,7 +12,7 @@ import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 import com.mar.lib.speedview.components.Indicators.TriangleIndicator;
 
 public class AwesomeSpeedometer extends Speedometer {

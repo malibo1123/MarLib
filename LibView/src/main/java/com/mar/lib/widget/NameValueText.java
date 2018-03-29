@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 import com.mar.lib.util.DisPlayUtil;
 
 /**

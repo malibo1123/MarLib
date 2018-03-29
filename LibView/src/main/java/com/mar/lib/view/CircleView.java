@@ -11,7 +11,7 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.mar.lib.R;
+import com.mar.lib.view.R;
 
 public class CircleView extends View {
 
