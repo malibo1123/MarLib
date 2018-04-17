@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/log/LogAndroid/LogAndroid.iml" filepath="$PROJECT_DIR$/log/LogAndroid/LogAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/log/LogJdk/LogJdk.iml" filepath="$PROJECT_DIR$/log/LogJdk/LogJdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/MarLib.iml" filepath="$PROJECT_DIR$/MarLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/log/MarLog/MarLog.iml" filepath="$PROJECT_DIR$/log/MarLog/MarLog.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/log/log.iml" filepath="$PROJECT_DIR$/log/log.iml" />
       <module fileurl="file://$PROJECT_DIR$/log/slf4j/slf4j.iml" filepath="$PROJECT_DIR$/log/slf4j/slf4j.iml" />

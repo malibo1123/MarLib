@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/log" />
             <option value="$PROJECT_DIR$/log/LogAndroid" />
             <option value="$PROJECT_DIR$/log/LogJdk" />
+            <option value="$PROJECT_DIR$/log/MarLog" />
             <option value="$PROJECT_DIR$/log/slf4j" />
           </set>
         </option>

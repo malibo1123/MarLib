@@ -9,12 +9,12 @@
 
     <com.mar.lib.widget.FlipImageView
         android:id="@+id/imageview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="center"
+        android:layout_width="112dp"
+        android:layout_height="189dp"
+        android:scaleType="fitXY"
         android:layout_gravity="center"
-        android:src="@drawable/lotus"
-        app:flipDrawable="@drawable/ic_logo"
+        android:src="@drawable/ic_action_star_0"
+        app:flipDrawable="@drawable/ic_action_star_10"
         app:flipDuration="5000"
         app:flipInterpolator="@android:anim/bounce_interpolator"
         app:flipRotations="y|x|z"

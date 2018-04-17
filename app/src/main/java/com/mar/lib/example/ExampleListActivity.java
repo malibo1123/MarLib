@@ -7,6 +7,8 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,14 @@ public class ExampleListActivity extends AppCompatActivity {
         // Example of a call to a native method
 //        TextView tv = (TextView) findViewById(R.id.sample_text);
 //        tv.setText(stringFromJNI());
+        final ImageView testAnim = findViewById(R.id.test_animation);
+        testAnim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testAnim.startAnimation(AnimationUtils.loadAnimation(
+                        ExampleListActivity.this, R.anim.anim_translate_x));
+            }
+        });
     }
 
     /**
