@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".ExampleListActivity">
 <LinearLayout
     android:layout_width="match_parent"
@@ -84,6 +85,18 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:onClick="showFlipImageViewExample"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:text="SVGA Player示例"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:onClick="showSVGAPlayerExample"/>
     <FrameLayout
         android:layout_width="72dp"
         android:layout_height="28.5dp"
@@ -131,6 +144,18 @@
         </LinearLayout>
     </com.mar.lib.view.VerticalSwitchLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:text="PercentSupport示例"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:onClick="showPercentSupportExample"/>
 
 </LinearLayout>
 </ScrollView>

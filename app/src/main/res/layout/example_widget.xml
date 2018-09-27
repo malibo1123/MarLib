@@ -76,6 +76,19 @@
             custom:embellishTitleText="垂直翻转Text示例"/>
         <!--杨柳青青江水平|闻郎江上踏歌声|东边日出西边雨|道是无晴却有晴-->
         <com.mar.lib.widget.VerticalSwitchTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textColor="#FFcccccc"
+            custom:switchDuaration = "1000"
+            custom:idleDuaration = "3000"
+            custom:alignment="center"
+            custom:sameDirection="false"
+            custom:verticalSwitchStyle="inAndOut"
+            custom:stringList="杨柳青青江水平|闻郎江上踏歌声|东边日出西边雨|道是无晴却有晴"/>
+        <!--杨柳青青江水平|闻郎江上踏歌声|东边日出西边雨|道是无晴却有晴-->
+        <com.mar.lib.widget.VerticalSwitchTextView
             android:id="@+id/award"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

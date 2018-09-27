@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
+//apply plugin: 'kotlin-android'
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 15
@@ -34,4 +35,10 @@ dependencies {
     compile 'com.github.Commit451:TranslationViewDragHelper:1.0.1'
     compile "com.wefika:flowlayout:0.4.1"
     implementation project(':log:slf4j')
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",{
+//        exclude group: 'com.intellij.lang', module: 'annotations'
+//    }
+    implementation 'com.squareup.wire:wire-runtime:2.3.0-RC1',{
+        exclude group: 'com.intellij.lang', module: 'annotations'
+    }
 }

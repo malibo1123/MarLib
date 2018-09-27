@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MarLib</string>
     <string name="title_activity_icon_text_example">IconTextExample</string>
+    <string name="title_activity_percent_support_example">PercentSupportExample</string>
 </resources>
