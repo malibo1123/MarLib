@@ -2,14 +2,18 @@ package com.mar.lib.example;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mar.lib.log.slf4j.Logger;
 import com.mar.lib.log.slf4j.LoggerFactory;
+import com.mar.lib.widget.SwitchLayout;
 
 public class ExampleListActivity extends AppCompatActivity {
     private Logger logger = LoggerFactory.getLogger("example");
@@ -34,6 +38,32 @@ public class ExampleListActivity extends AppCompatActivity {
                         ExampleListActivity.this, R.anim.anim_translate_x));
             }
         });
+
+        final SwitchLayout switchLayout = findViewById(R.id.widgt_switch_layout);
+        TextView tv1 = new TextView(this);
+        tv1.setText("----------tv1------------");
+        tv1.setTextSize(TypedValue.COMPLEX_UNIT_SP,18f);
+        tv1.setTextColor(Color.BLACK);
+        switchLayout.addView(tv1);
+
+        TextView tv2 = new TextView(this);
+        tv2.setText("--------------tv2---------");
+        tv2.setTextSize(TypedValue.COMPLEX_UNIT_SP,21f);
+        tv2.setTextColor(Color.BLACK);
+        switchLayout.addView(tv2);
+
+        TextView tv3 = new TextView(this);
+        tv3.setText("--------tv3------------");
+        tv3.setTextSize(TypedValue.COMPLEX_UNIT_SP,24f);
+        tv3.setTextColor(Color.BLACK);
+        switchLayout.addView(tv3);
+
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                switchLayout.setVisibility(View.VISIBLE);
+//            }
+//        }, 5000);
     }
 
     /**

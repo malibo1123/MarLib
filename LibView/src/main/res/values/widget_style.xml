@@ -30,6 +30,31 @@
             <enum name="firstOutThenIn" value="2"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="SwitchLayout">
+        <attr name="switchTime" format="integer"/>
+        <attr name="idleTime" format="integer"/>
+        <attr name="switchDirection">
+            <enum name="toLeft" value="1"/>
+            <enum name="toRight" value="2"/>
+            <enum name="toTop" value="3"/>
+            <enum name="toBottom" value="4"/>
+        </attr>
+        <attr name="switchPlayStyle">
+            <enum name="inAndOutSameTime"  value="1"/>
+            <enum name="outThenInSameDirection"  value="2"/>
+            <enum name="outThenInDiffDirection"  value="3"/>
+        </attr>
+        <attr name="switchInterpolator">
+            <enum name="linearInterpolator"  value="1"/>
+            <enum name="accelerateInterpolator"  value="2"/>
+            <enum name="decelerateInterpolator"  value="3"/>
+            <enum name="accelerateDecelerateInterpolator"  value="4"/>
+            <enum name="anticipateInterpolator"  value="5"/>
+            <enum name="bounceInterpolator"  value="6"/>
+        </attr>
+    </declare-styleable>
+
     <!--此自定义属性为自定义控件NameValueText使用 -->
     <declare-styleable name="CustomNameValueText">
         <attr name="nameText" format="string"/>
