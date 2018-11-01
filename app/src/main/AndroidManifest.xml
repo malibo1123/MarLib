@@ -23,6 +23,7 @@
         <activity android:name=".SpeedViewExample" />
         <activity android:name=".ControlActivity" />
         <activity android:name=".FlipImageViewExample" />
+        <activity android:name=".SwitchLayoutExample" />
     </application>
 
 </manifest>

@@ -96,6 +96,10 @@ public class ExampleListActivity extends AppCompatActivity {
         showActivity(FlipImageViewExample.class);
     }
 
+    public void showSwitchLayoutExample(View view){
+        showActivity(SwitchLayoutExample.class);
+    }
+
     private void showActivity(Class<? extends Activity> cls){
         Intent i = new Intent(this,cls);
         startActivity(i);

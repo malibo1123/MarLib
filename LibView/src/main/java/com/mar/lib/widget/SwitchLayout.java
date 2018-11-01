@@ -25,33 +25,31 @@ import com.mar.lib.view.R;
 
 
 /**
- * 颜值直播间小时榜和礼物周榜切换，写了一个轮播layout
+ * 一个支持轮播的控件
  * 支持上下左右四个方向轮播，支持载入布局或者动态代码调用addView()函数：<br>
- *  几个xml属性如下
- *  switchTime---------切换时间；<br>
- *  idleTime---------停留时间；<br>
- *  switchStyle---------切换风格，支持三种切换风格；<br>
- *  switchDirection---------切换方向，支持上下左右四个方向；<br>
- *
+ *  几个xml属性如下：<br>
+ *  switchTime---------------切换时间，如不设置，则是默认时间500ms；<br>
+ *  idleTime----------------停留时间，如不设置，则是默认时间3000ms；<br>
+ *  switchStyle-------------切换风格，支持三种切换风格（inAndOutSameTime---切入和切出同时进行，
+ *  outThenInSameDirection---先切入后切出，但是切出的时候和切入的方向相同，
+ *  outThenInDiffDirection---先切出再切入，但是切出的时候和切入的方向相反），
+ *  如不设置，则是默认的切入和切出同时进行；<br>
+ *  switchDirection---------切换方向，支持上下左右四个方向[toTop,toBottom,toLeft,toRight]；<br>
+ *  switchInterpolator------对动画速度的控制，实际上是设置动画时间轴的差值方式，
+ *  可以是线性匀速的(linearInterpolator)，
+ *  可以是加速的(accelerateInterpolator),可以是减速的（decelerateInterpolator），
+ *  可以是先加速再减速的(accelerateDecelerateInterpolator)，可以是到达结束时弹跳的(bounceInterpolator)，
+ *  也可以是先后退再加速向前的(anticipateInterpolator)<br>
  * Created by malibo on 2018/10/31.
  */
 public class SwitchLayout extends FrameLayout implements ValueAnimator.AnimatorUpdateListener, Animator.AnimatorListener, ViewGroup.OnHierarchyChangeListener {
     private static final int DEFAULT_SWITCH_TIME = 500;//默认切换时间
     private static final int DEFAULT_IDLE_Time = 3000;//默认停留时间
-    //四个切换方向：左右上下
-    private static final int DirectionLeft = 1;
-    private static final int DirectionRight = 2;
-    private static final int DirectionTop = 3;
-    private static final int DirectionBottom = 4;
-    //三种切换风格
-    private static final int StyleInAndOutSameTime = 1;//切出和切进同时进行
-    private static final int StyleOutThenInSameDirection = 2;//先出后进，进出一个方向
-    private static final int StyleOutThenInDiffDirection = 3;//先出后进，进出方向不同
 
     private int switchTime;//切换时间
     private int idleTime;//间隔时间
-    private int switchStyle;//切换风格
-    private int switchDirection;//切换方向
+    private SwitchStyle switchStyle;//切换风格
+    private SwitchDirection switchDirection;//切换方向
     private int switchInterpolator;
 
     public SwitchLayout(@NonNull Context context) {
@@ -81,8 +79,18 @@ public class SwitchLayout extends FrameLayout implements ValueAnimator.AnimatorU
         try {
             switchTime = array.getInt(R.styleable.SwitchLayout_switchTime, DEFAULT_SWITCH_TIME);
             idleTime = array.getInt(R.styleable.SwitchLayout_idleTime, DEFAULT_IDLE_Time);
-            switchDirection = array.getInt(R.styleable.SwitchLayout_switchDirection, DirectionLeft);
-            switchStyle = array.getInt(R.styleable.SwitchLayout_switchPlayStyle, StyleInAndOutSameTime);
+            switchDirection = SwitchDirection.getDirection(array.getInt(
+                    R.styleable.SwitchLayout_switchDirection, SwitchDirection.ToLeft.getValue()));
+            if(switchDirection==null){
+                switchDirection = SwitchDirection.ToLeft;
+            }
+
+            switchStyle = SwitchStyle.getStyle(array.getInt(R.styleable.SwitchLayout_switchPlayStyle,
+                    SwitchStyle.StyleInAndOutSameTime.getValue()));
+            if(switchStyle==null){
+                switchStyle = SwitchStyle.StyleInAndOutSameTime;
+            }
+
             switchInterpolator = array.getInt(R.styleable.SwitchLayout_switchInterpolator, 1);
         }catch (Exception e){
             Log.w("VerticalSwitchLayout","获取自定义属性出错"+e.toString());
@@ -221,19 +229,15 @@ public class SwitchLayout extends FrameLayout implements ValueAnimator.AnimatorU
             case StyleOutThenInDiffDirection:
                 if (currentValue < switchTime/2.0f) {
                     currentAnimatedValue = ((float)currentValue)/((float)switchTime/2.0f);
-                    moveViewInOrOut(false,switchStyle==StyleOutThenInSameDirection);
+                    moveViewInOrOut(false,switchStyle
+                            .getValue()==SwitchStyle.StyleOutThenInSameDirection.getValue());
                 }else if (currentValue < switchTime) {
                     currentAnimatedValue = ((float)currentValue - switchTime/2.0f)/((float)switchTime/2.0f);
-                    moveViewInOrOut(true,switchStyle==StyleOutThenInSameDirection);
+                    moveViewInOrOut(true,switchStyle
+                            .getValue()==SwitchStyle.StyleOutThenInSameDirection.getValue());
                 }else if(currentAnimatedValue!=1.0f) {//确保如果最后一次取值由比switchDuaration小跳到比它大造成绘制不居中的情况不会出现
                     currentAnimatedValue = 1.0f;
                     moveViewInAndOut();
-//                    if (inView != null) {
-//                        inView.setVisibility(VISIBLE);
-//                    }
-//                    if (outView != null) {
-//                        outView.setVisibility(INVISIBLE);
-//                    }
                 }
                 break;
             case StyleInAndOutSameTime:
@@ -255,19 +259,19 @@ public class SwitchLayout extends FrameLayout implements ValueAnimator.AnimatorU
         float mHeight = getHeight() + viewMagrin;
         float mWidth = getWidth() + viewMagrin;
         switch (switchDirection){
-            case DirectionRight:
+            case ToRight:
                 verticalOffsetOutX = mWidth * currentAnimatedValue;
                 verticalOffsetInX = mWidth * currentAnimatedValue - mWidth;
                 break;
-            case DirectionTop:
+            case ToTop:
                 verticalOffsetOutY = -mHeight * currentAnimatedValue;
                 verticalOffsetInY = mHeight - mHeight * currentAnimatedValue;
                 break;
-            case DirectionBottom:
+            case ToBottom:
                 verticalOffsetOutY = mHeight * currentAnimatedValue;
                 verticalOffsetInY = mHeight * currentAnimatedValue - mHeight;
                 break;
-            case DirectionLeft:
+            case ToLeft:
             default:
                 verticalOffsetOutX = -mWidth * currentAnimatedValue;
                 verticalOffsetInX = mWidth - mWidth * currentAnimatedValue;
@@ -299,19 +303,19 @@ public class SwitchLayout extends FrameLayout implements ValueAnimator.AnimatorU
         float mHeight = getHeight() + viewMagrin;
         float mWidth = getWidth() + viewMagrin;
         switch (switchDirection){
-            case DirectionRight:
+            case ToRight:
                 verticalOffsetX = isIn?(mWidth * currentAnimatedValue - mWidth):
                         (mWidth * currentAnimatedValue*(sameInDirection?-1:1));
                 break;
-            case DirectionTop:
+            case ToTop:
                 verticalOffsetY = isIn?(mHeight - mHeight * currentAnimatedValue):
                         (mHeight * currentAnimatedValue*(sameInDirection?1:-1));
                 break;
-            case DirectionBottom:
+            case ToBottom:
                 verticalOffsetY = isIn?(mHeight * currentAnimatedValue - mHeight):
                         (mHeight * currentAnimatedValue*(sameInDirection?-1:1));
                 break;
-            case DirectionLeft:
+            case ToLeft:
             default:
                 verticalOffsetX = isIn?(mWidth - mWidth * currentAnimatedValue):
                         (mWidth * currentAnimatedValue*(sameInDirection?1:-1));
@@ -348,9 +352,15 @@ public class SwitchLayout extends FrameLayout implements ValueAnimator.AnimatorU
 
     @Override
     public void onAnimationCancel(Animator animation) {
-        showOnlyOneChild(currentIndex%childCounts);
+        if(currentIndex>=0 && currentIndex<getChildCount())
+            showOnlyOneChild(currentIndex);
     }
 
+    /**
+     * 停止轮播，并将视图切换到指定的视图view
+     * @param view 希望切换到的视图
+     *             如果传入的视图view没有添加到SwitchLayout过，那么该函数不会有效果
+     */
     public void switchToView(View view){
         if(view==null)
             return;
@@ -367,12 +377,138 @@ public class SwitchLayout extends FrameLayout implements ValueAnimator.AnimatorU
             }
         }
         if(index>=0){
-            if(animator!=null && animator.isRunning())
-                animator.cancel();
-            showOnlyOneChild(index);
-            currentIndex = index-1;
+            currentIndex = index;
             if(animator!=null)
-                animator.start();
+                animator.cancel();
+        }
+    }
+
+    /**
+     * 开始动画，注意，SwitchLayout是自动开始轮播不需要手动条用的。
+     * 但是如果代码动态调用停止了动画，比如调用了{@link #stopSwitch()}
+     * 或者{@link #switchToView(View)} ，那么可以调用此函数重新开始动画
+     */
+    public void startSwich(){
+        if(animator==null)
+            initAnimator();
+        if(!animator.isRunning())
+            animator.start();
+    }
+
+    /**
+     * 停止轮播
+     */
+    public void stopSwitch(){
+        if(animator!=null)
+            animator.cancel();
+    }
+
+    public int getSwitchTime() {
+        return switchTime;
+    }
+
+    public void setSwitchTime(int switchTime) {
+        if(switchTime>0)
+            this.switchTime = switchTime;
+    }
+
+    public int getIdleTime() {
+        return idleTime;
+    }
+
+    public void setIdleTime(int idleTime) {
+        if(idleTime>0)
+            this.idleTime = idleTime;
+    }
+
+    public SwitchDirection getSwitchDirection() {
+        return switchDirection;
+    }
+
+    public void setSwitchDirection(SwitchDirection switchDirection) {
+        this.switchDirection = switchDirection;
+    }
+
+    public SwitchStyle getSwitchStyle() {
+        return switchStyle;
+    }
+
+    public void setSwitchStyle(SwitchStyle switchStyle) {
+        this.switchStyle = switchStyle;
+    }
+
+    public int getSwitchInterpolator() {
+        return switchInterpolator;
+    }
+
+    public void setSwitchInterpolator(int switchInterpolator) {
+        if(switchInterpolator>=1 && switchInterpolator<=6)
+            this.switchInterpolator = switchInterpolator;
+    }
+
+    /**
+     * 切换方向，共支持上、下、左、右四个切换方向
+     */
+    public enum SwitchDirection{
+        ToLeft(1),ToRight(2),ToTop(3),ToBottom(4);
+
+        private int direction;
+        SwitchDirection(int direction){
+            this.direction = direction;
+        }
+
+        public static SwitchDirection getDirection(int direction){
+            switch (direction){
+                case 1:
+                    return ToLeft;
+                case 2:
+                    return ToRight;
+                case 3:
+                    return ToTop;
+                case 4:
+                    return ToBottom;
+                default:
+                    return null;
+            }
+        }
+
+        public int getValue(){
+            return direction;
+        }
+    }
+
+    /**
+     * 切换风格，共支持三种切换风格:
+     * StyleInAndOutSameTime-----------切出和切进同时进行
+     * StyleOutThenInSameDirection-----先出后进，进出一个方向
+     * StyleOutThenInDiffDirection-----先出后进，进出方向不同
+     */
+    public enum SwitchStyle{
+        StyleInAndOutSameTime(1)//切出和切进同时进行
+        ,StyleOutThenInSameDirection(2)//先出后进，进出一个方向
+        ,StyleOutThenInDiffDirection(3)//先出后进，进出方向不同
+        ;
+
+        private int style;
+        SwitchStyle(int style){
+            this.style = style;
+        }
+
+        public static SwitchStyle getStyle(int style){
+            switch (style){
+                case 1:
+                    return StyleInAndOutSameTime;
+                case 2:
+                    return StyleOutThenInSameDirection;
+                case 3:
+                    return StyleOutThenInDiffDirection;
+                default:
+                    return null;
+            }
+        }
+
+        public int getValue(){
+            return style;
         }
     }
 }
