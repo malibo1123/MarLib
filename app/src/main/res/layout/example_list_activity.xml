@@ -114,20 +114,6 @@
             android:src="@drawable/fool_prank_light_animation"
             android:id="@+id/test_animation"/>
     </FrameLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:text="SwitchLayout示例"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:onClick="showSwitchLayoutExample"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,22 +126,56 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:onClick="showPercentSupportExample"/>
+    <TextView android:id="@+id/example_switch_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:text="SwitchLayout示例1"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:onClick="showSwitchLayoutExample"/>
+    <TextView android:id="@+id/example_switch_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:text="SwitchLayout示例2"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:onClick="showSwitchLayoutExample"/>
 
-    <com.mar.lib.widget.SwitchLayout
-        android:id="@+id/widgt_switch_layout"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:text="HVScrollView示例"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:onClick="showHVScrollViewExample"/>
+
+    <TextView
+        android:id="@+id/rankList_tabRoomPatronQuestion"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_vertical"
-        android:layout_gravity="center_horizontal"
-        android:visibility="visible"
-        android:clipChildren="true"
-        app:switchTime="1000"
-        app:idleTime="6000"
-        app:switchDirection="toRight"
-        app:switchPlayStyle="outThenInSameDirection"
-        app:switchInterpolator="bounceInterpolator"/>
-
+        android:includeFontPadding="false"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="left|center_vertical"
+        tools:text="@string/rank_list_room_patron_content"
+        android:textColor="#c75000"
+        android:textSize="12sp"
+        android:background="@android:color/darker_gray"/>
 </LinearLayout>
 </ScrollView>

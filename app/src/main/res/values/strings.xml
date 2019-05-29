@@ -2,4 +2,8 @@
     <string name="app_name">MarLib</string>
     <string name="title_activity_icon_text_example">IconTextExample</string>
     <string name="title_activity_percent_support_example">PercentSupportExample</string>
+
+    <item name="view_priority" type="id"/>
+
+    <string name="rank_list_room_patron_content"><Data><![CDATA[·活动期间统计本房用户累计贡献CP值，实时第1名用<br>户可在房间内挂件展示；<br>· 活动结束时榜单第1名成为本房守护之星，可活动守<br>护发言后缀3天<font color="#e29268">(在本房间内展示)</font>]]></Data></string>
 </resources>

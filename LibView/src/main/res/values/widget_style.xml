@@ -243,4 +243,15 @@
             <enum name="Forward" value="1" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="HVScrollView">
+        <attr format="boolean" name="fillViewportH"/>
+        <attr format="boolean" name="fillViewportV"/>
+        <attr name="scrollOrientation">
+            <enum name="none" value="0"/>
+            <enum name="horizontal" value="1"/>
+            <enum name="vertical" value="2"/>
+            <enum name="both" value="3"/>
+        </attr><attr format="boolean" name="childLayoutCenter"/>
+    </declare-styleable>
 </resources>

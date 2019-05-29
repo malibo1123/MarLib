@@ -24,6 +24,7 @@
         <activity android:name=".ControlActivity" />
         <activity android:name=".FlipImageViewExample" />
         <activity android:name=".SwitchLayoutExample" />
+        <activity android:name=".ExampleHVScroll" />
     </application>
 
 </manifest>
